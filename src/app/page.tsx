@@ -14,16 +14,10 @@ import { Button, ButtonGroup } from "./_components/button";
 import { Separator } from "@radix-ui/react-separator";
 import Card from "./_components/card";
 import Pricing from "./_components/pricing";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "~/components/ui/accordion"
 import FAQs from "./_components/faqs";
-import { SignedIn, SignedOut, SignIn, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 
-export default function HomePage() {
+export default function Page() {
     return (
         <>
             <Nav />
@@ -157,7 +151,7 @@ function Nav() {
 }
 
 
-export function Footer() {
+function Footer() {
     return (
         <footer className="space-y-9 mb-9" id="footer">
             <div className="flex justify-between">
