@@ -21,6 +21,7 @@ import {
     AccordionTrigger,
 } from "~/components/ui/accordion"
 import FAQs from "./_components/faqs";
+import { SignedIn, SignedOut, SignIn, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 export default function HomePage() {
     return (
@@ -132,10 +133,19 @@ export function Nav() {
                 </NavigationMenu>
             </div>
             <div className="flex gap-3">
-                <ButtonGroup>
-                    <Link href={"/sign-in"}>Sign in</Link>
-                    <Link href={"/sign-in"}>Sign up</Link>
-                </ButtonGroup>
+                <SignedOut>
+                    <ButtonGroup>
+                        <SignInButton>
+                            Sign in
+                        </SignInButton>
+                        <SignUpButton>
+                            Sign up
+                        </SignUpButton>
+                    </ButtonGroup>
+                </SignedOut>
+                <SignedIn>
+                    <Button variant="secondary">Dashboard</Button>
+                </SignedIn>
                 <Button>
                     Invite Now
                     <ArrowLeft />
