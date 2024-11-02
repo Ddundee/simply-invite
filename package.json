@@ -26,6 +26,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.1",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slider": "^1.2.1",
+    "@sentry/nextjs": "^8.36.0",
     "@t3-oss/env-nextjs": "^0.10.1",
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
