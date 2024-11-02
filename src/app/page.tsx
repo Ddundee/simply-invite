@@ -87,7 +87,7 @@ export default function HomePage() {
 }
 
 
-export function Nav() {
+function Nav() {
     return (
         <nav className="flex justify-between py-6 border-b border-outline" id="nav">
             <div className="flex justify-between gap-12 items-center">
