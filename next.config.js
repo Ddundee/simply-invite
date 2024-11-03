@@ -45,8 +45,8 @@ const config = withSentryConfig(coreConfig, {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
 
-    org: "none-e06",
-    project: "t3-gallery",
+    org: "simplly-invite",
+    project: "simply-invite-main",
 
     // Only print logs for uploading source maps in CI
     silent: !process.env.CI,
