@@ -2,7 +2,6 @@
 
 import type { z } from "zod"
 import type { contactFormSchema } from "~/app/_components/contactForm"
-import { captureException } from "@sentry/nextjs";
 
 interface DiscordEmbed {
     title: string;

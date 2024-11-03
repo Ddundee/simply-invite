@@ -23,6 +23,7 @@ import { Button } from "./button"
 import { Textarea } from "~/components/ui/textarea"
 import onContactFormSubmit from "~/actions/handleContactFormSubmit"
 import { toast } from "sonner"
+import { captureException } from "@sentry/nextjs"
 
 
 export const contactFormSchema = z.object({
@@ -59,10 +60,12 @@ export default function ContactForm() {
                 toast.loading("Sending message...", { id: "contact-form" })
                 onContactFormSubmit(data)
                     .then(() => {
+                        form.reset()
                         toast.success("Message sent!", { id: "contact-form" })
                     })
-                    .catch(() => {
-                        toast.error("Failed to send message!", { id: "contact-form" })
+                    .catch((error) => {
+                        captureException(error)
+                        toast.error("Failed to send message 😭! Please try again later.", { id: "contact-form" })
                     })
             })} className="space-y-6">
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -99,7 +102,7 @@ export default function ContactForm() {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Message</FormLabel>
+                                <FormLabel>Email Address</FormLabel>
                                 <FormControl>
                                     <Input placeholder="johndoe@email.com" {...field} />
                                 </FormControl>
