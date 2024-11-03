@@ -1,9 +1,9 @@
 import "~/styles/globals.css";
 import localFont from 'next/font/local'
 import { type Metadata } from "next";
-import dynamic from 'next/dynamic'
 import { ClerkProvider } from "@clerk/nextjs";
 import { CSPostHogProvider } from "./providers";
+import { Toaster } from "~/components/ui/sonner";
 
 
 export const metadata: Metadata = {
@@ -24,7 +24,9 @@ export default function RootLayout({
         <ClerkProvider>
             <CSPostHogProvider>
                 <html lang="en" className={`${swizter.className} scroll-smooth`}>
+
                     <body className="bg-primary-bg text-primary-text [&>*]:px-32">
+                        <Toaster />
                         {children}
                     </body>
                 </html>

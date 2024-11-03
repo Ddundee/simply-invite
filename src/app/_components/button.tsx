@@ -14,14 +14,13 @@ export function ButtonGroup({ children }: { children: React.ReactNode[] }) {
         </div>
     )
 }
-export function Button({ children, className, variant }: { children: React.ReactNode, className?: string, variant?: 'primary' | 'secondary' }) {
-    if (!variant || variant == 'primary') return (
-        <button className={cn('cursor-pointer px-6 py-3 bg-blue text-primary-text gap-1 rounded-full flex items-center overflow-clip hover:bg-opacity-80 duration-100 justify-center', className)}>
-            {children}
-        </button>
-    )
-    else if (variant == 'secondary') return (
-        <button className='rounded-full border border-outline flex items-center cursor-pointer px-6 py-3 bg-primary-text bg-opacity-[.03] hover:bg-opacity-5 duration-100'>
+export function Button({ children, className, variant, type }: { children: React.ReactNode, className?: string, variant?: 'primary' | 'secondary', type?: 'submit' }) {
+    const classNames = {
+        primary: 'cursor-pointer px-6 py-3 bg-blue text-primary-text gap-1 rounded-full flex items-center overflow-clip hover:bg-opacity-80 duration-100 justify-center',
+        secondary: 'rounded-full border border-outline flex items-center cursor-pointer px-6 py-3 bg-primary-text bg-opacity-[.03] hover:bg-opacity-5 duration-100'
+    }
+    return (
+        <button className={cn(classNames[variant ? variant : 'primary'], className)} type={type}>
             {children}
         </button>
     )
