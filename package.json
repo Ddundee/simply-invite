@@ -21,7 +21,7 @@
     "format:write:prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:check:prettier": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:write:eslint": "eslint . --fix",
-    "format:check:eslint": "eslint . ",
+    "format:check:eslint": "eslint .",
     "format:write": "npm run format:write:prettier && npm run format:write:eslint",
     "format:check": "npm run format:check:prettier && npm run format:check:eslint"
   },
