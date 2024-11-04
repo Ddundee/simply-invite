@@ -1,7 +1,7 @@
-"use server"
+"use server";
 
-import type { z } from "zod"
-import type { contactFormSchema } from "~/app/_components/contactForm"
+import type { z } from "zod";
+import type { contactFormSchema } from "~/app/_components/contactForm";
 
 interface DiscordEmbed {
     title: string;
@@ -12,28 +12,29 @@ interface DiscordEmbed {
     }[];
 }
 
-
-export default async function onContactFormSubmit(values: z.infer<typeof contactFormSchema>) {
+export default async function onContactFormSubmit(
+    values: z.infer<typeof contactFormSchema>,
+) {
     const embed: DiscordEmbed = {
-        title: 'Simply-Invite Contact Form Submission',
-        color: 0x1A69F3,
+        title: "Simply-Invite Contact Form Submission",
+        color: 0x1a69f3,
         fields: [
-            { name: 'Name', value: `${values.firstName} ${values.lastName}` },
-            { name: 'Type', value: values.type },
-            { name: 'Email', value: values.email },
-        ]
+            { name: "Name", value: `${values.firstName} ${values.lastName}` },
+            { name: "Type", value: values.type },
+            { name: "Email", value: values.email },
+        ],
     };
     if (values.message) {
-        embed.fields.push({ name: 'Message', value: values.message });
+        embed.fields.push({ name: "Message", value: values.message });
     }
     await fetch(process.env.DISCORD_WEBHOOK_URL!, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            username: 'Simply-Invite',
-            avatar_url: 'https://i.imgur.com/AfFp7pu.png',
+            username: "Simply-Invite",
+            avatar_url: "https://i.imgur.com/AfFp7pu.png",
             embeds: [embed],
         }),
     });

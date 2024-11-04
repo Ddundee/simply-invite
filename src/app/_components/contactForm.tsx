@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
     Form,
     FormControl,
@@ -10,29 +10,34 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "~/components/ui/form"
-import { Input } from "~/components/ui/input"
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "~/components/ui/select"
-import { Button } from "./button"
-import { Textarea } from "~/components/ui/textarea"
-import onContactFormSubmit from "~/actions/handleContactFormSubmit"
-import { toast } from "sonner"
-import { captureException } from "@sentry/nextjs"
-
+} from "~/components/ui/select";
+import { Button } from "./button";
+import { Textarea } from "~/components/ui/textarea";
+import onContactFormSubmit from "~/actions/handleContactFormSubmit";
+import { toast } from "sonner";
+import { captureException } from "@sentry/nextjs";
 
 export const contactFormSchema = z.object({
     firstName: z.string().min(1).max(50),
     lastName: z.string().min(1).max(50),
     email: z.string().email(),
-    type: z.enum(["Support", "Request Feature", "Report Bug", "Sales", "Other"]),
+    type: z.enum([
+        "Support",
+        "Request Feature",
+        "Report Bug",
+        "Sales",
+        "Other",
+    ]),
     message: z.string().max(500).optional(),
-})
+});
 
 export default function ContactForm() {
     const form = useForm<z.infer<typeof contactFormSchema>>({
@@ -50,25 +55,31 @@ export default function ContactForm() {
         //     email: "test@email.com",
         //     message: "",
         // },
-    })
-
-
+    });
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(async (data) => {
-                toast.loading("Sending message...", { id: "contact-form" })
-                onContactFormSubmit(data)
-                    .then(() => {
-                        form.reset()
-                        toast.success("Message sent!", { id: "contact-form" })
-                    })
-                    .catch((error) => {
-                        captureException(error)
-                        toast.error("Failed to send message 😭! Please try again later.", { id: "contact-form" })
-                    })
-            })} className="space-y-6">
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <form
+                onSubmit={form.handleSubmit(async (data) => {
+                    toast.loading("Sending message...", { id: "contact-form" });
+                    onContactFormSubmit(data)
+                        .then(() => {
+                            form.reset();
+                            toast.success("Message sent!", {
+                                id: "contact-form",
+                            });
+                        })
+                        .catch((error) => {
+                            captureException(error);
+                            toast.error(
+                                "Failed to send message! 😭 Please try again later.",
+                                { id: "contact-form" },
+                            );
+                        });
+                })}
+                className="space-y-6"
+            >
+                <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
                     <FormField
                         control={form.control}
                         name="firstName"
@@ -96,7 +107,7 @@ export default function ContactForm() {
                         )}
                     />
                 </div>
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
                     <FormField
                         control={form.control}
                         name="email"
@@ -104,7 +115,10 @@ export default function ContactForm() {
                             <FormItem>
                                 <FormLabel>Email Address</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="johndoe@email.com" {...field} />
+                                    <Input
+                                        placeholder="johndoe@email.com"
+                                        {...field}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -116,14 +130,24 @@ export default function ContactForm() {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Type</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                >
                                     <FormControl>
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select an option..." />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {contactFormSchema.shape.type._def.values.map((value, index) => <QuickSelectItem key={index} value={value} />)}
+                                        {contactFormSchema.shape.type._def.values.map(
+                                            (value, index) => (
+                                                <QuickSelectItem
+                                                    key={index}
+                                                    value={value}
+                                                />
+                                            ),
+                                        )}
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -138,7 +162,10 @@ export default function ContactForm() {
                         <FormItem>
                             <FormLabel>Message</FormLabel>
                             <FormControl>
-                                <Textarea placeholder="Simply invite is awesome..." {...field} />
+                                <Textarea
+                                    placeholder="Simply invite is awesome..."
+                                    {...field}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -147,12 +174,9 @@ export default function ContactForm() {
                 <Button type="submit">Submit</Button>
             </form>
         </Form>
-    )
-
+    );
 }
 
 function QuickSelectItem({ value }: { value: string }) {
-    return (
-        <SelectItem value={value}>{value}</SelectItem>
-    )
+    return <SelectItem value={value}>{value}</SelectItem>;
 }

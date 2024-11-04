@@ -1,8 +1,8 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { sql } from "drizzle-orm";
 import {
+    boolean,
     index,
     integer,
     pgTableCreator,
@@ -10,27 +10,25 @@ import {
     varchar,
 } from "drizzle-orm/pg-core";
 
-/**
- * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
- * database instance for multiple projects.
- *
- * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
- */
 export const createTable = pgTableCreator((name) => `simply-invite_${name}`);
 
-export const posts = createTable(
-    "post",
-    {
-        id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
-        name: varchar("name", { length: 256 }),
-        createdAt: timestamp("created_at", { withTimezone: true })
-            .default(sql`CURRENT_TIMESTAMP`)
-            .notNull(),
-        updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-            () => new Date()
-        ),
-    },
-    (example) => ({
-        nameIndex: index("name_idx").on(example.name),
-    })
-);
+export const event = createTable("event", {
+    id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+    // userId: varchar("userId", { length: 256 }),
+    // name: varchar("name", { length: 512 }),
+    // date: timestamp("date"),
+    // hostName: varchar("host_name", { length: 512 }),
+    // location: varchar("location", { length: 512 }),
+    // note: varchar("note", { length: 2048 }),
+    // publicGuestList: boolean("public_guest_list"),
+});
+
+// export const guest = createTable("guest", {
+//     id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+//     eventId: integer("event_id"),
+//     name: varchar("name", { length: 512 }),
+//     numGuests: integer("num_guests"),
+//     response: varchar("response", {
+//         enum: ["accepted", "declined", "pending"],
+//     })
+// });
