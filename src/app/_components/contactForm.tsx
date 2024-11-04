@@ -26,17 +26,18 @@ import { toast } from "sonner";
 import { captureException } from "@sentry/nextjs";
 
 export const contactFormSchema = z.object({
-    firstName: z.string().min(1).max(50),
-    lastName: z.string().min(1).max(50),
+    firstName: z.string().min(1).max(64),
+    lastName: z.string().min(1).max(64),
     email: z.string().email(),
     type: z.enum([
+        "Select an option",
         "Support",
         "Request Feature",
         "Report Bug",
         "Sales",
         "Other",
     ]),
-    message: z.string().max(500).optional(),
+    message: z.string().max(512).optional(),
 });
 
 export default function ContactForm() {
@@ -47,6 +48,7 @@ export default function ContactForm() {
             lastName: "",
             email: "",
             message: "",
+            type: "Select an option",
         },
         // defaultValues: {
         //     firstName: "Dhanush",
@@ -56,11 +58,17 @@ export default function ContactForm() {
         //     message: "",
         // },
     });
-
     return (
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(async (data) => {
+                    if (data.type === "Select an option") {
+                        form.setError("type", {
+                            type: "manual",
+                            message: "Please select an option",
+                        });
+                        return;
+                    }
                     toast.loading("Sending message...", { id: "contact-form" });
                     onContactFormSubmit(data)
                         .then(() => {
@@ -136,7 +144,7 @@ export default function ContactForm() {
                                 >
                                     <FormControl>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Select an option..." />
+                                            <SelectValue placeholder="Select an option" />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>

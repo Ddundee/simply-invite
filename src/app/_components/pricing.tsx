@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Slider } from "~/components/ui/slider";
 import { cn } from "~/lib/utils";
 import Card from "./card";
@@ -12,11 +12,6 @@ export default function Pricing() {
     };
 
     const [invites, setInvites] = useState<number>(33);
-    useEffect(() => {
-        setTimeout(() => {
-            setInvites(500);
-        }, 1000);
-    }, []);
     return (
         <div className="space-y-9" id="pricing">
             <h2 className="text-2xl font-medium">Pricing</h2>
