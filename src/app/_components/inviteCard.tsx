@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import React from "react";
 import Card from "./card";
-import { events } from "../dashboard/page";
+import type { events } from "../dashboard/page";
 import { formatDistanceToNow } from "date-fns";
 import { CalendarIcon, PersonIcon } from "@radix-ui/react-icons";
 

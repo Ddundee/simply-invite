@@ -9,6 +9,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
+    "db:push:verbose": "drizzle-kit push --verbose",
     "db:drop": "drizzle-kit drop",
     "db:studio": "drizzle-kit studio",
     "dev": "next dev --turbo",
@@ -17,8 +18,12 @@
     "preview": "next build && next start",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache"
+    "format:write:prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
+    "format:check:prettier": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
+    "format:write:eslint": "eslint . --fix",
+    "format:check:eslint": "eslint . ",
+    "format:write": "npm run format:write:prettier && npm run format:write:eslint",
+    "format:check": "npm run format:check:prettier && npm run format:check:eslint"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.1.0",
@@ -73,6 +78,7 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.0.1",
     "eslint-plugin-drizzle": "^0.2.3",
+    "pg": "^8.13.1",
     "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",

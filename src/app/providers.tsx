@@ -31,6 +31,7 @@ function PostHogAuthWrapper({ children }: { children: React.ReactNode }) {
         } else if (!auth.isSignedIn) {
             posthog.reset();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth]);
 
     return children;

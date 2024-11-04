@@ -7,16 +7,12 @@ import {
 } from "@clerk/nextjs";
 import Link from "next/link";
 import { ButtonGroup, Button } from "../_components/button";
-import { ArrowLeft } from "../_components/icons";
 import {
     NavigationMenu,
     NavigationMenuList,
     NavigationMenuItem,
-    NavigationMenuTrigger,
-    NavigationMenuContent,
     NavigationMenuLink,
 } from "@radix-ui/react-navigation-menu";
-import { NavigationMenuLinkItem } from "~/components/ui/navigation-menu";
 import { cn } from "~/lib/utils";
 
 export default function Layout({
@@ -63,7 +59,9 @@ export default function Layout({
                             <SignInButton>Sign in</SignInButton>
                             <SignUpButton>Sign up</SignUpButton>
                         </ButtonGroup>
-                        <Button>Go Home</Button>
+                        <Link href={"/"}>
+                            <Button>Go Home</Button>
+                        </Link>
                     </SignedOut>
                     <SignedIn>
                         <h2>
@@ -82,9 +80,9 @@ export default function Layout({
             <SignedOut>
                 <main className="mt-32 flex h-full w-full flex-col items-center justify-center gap-3">
                     <h1>How did you get here? 💀</h1>
-                    <Button>
-                        <Link href="/">Go Home</Link>
-                    </Button>
+                    <Link href="/">
+                        <Button>Go Home</Button>
+                    </Link>
                 </main>
             </SignedOut>
         </div>
