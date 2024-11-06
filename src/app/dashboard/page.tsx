@@ -13,6 +13,7 @@ import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 import { Button } from "../_components/button";
 import InviteCard from "../_components/inviteCard";
 import { TextAlignJustifyIcon, ViewGridIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 export const events = [
     {
@@ -190,9 +191,11 @@ export default function Page() {
                         </ToggleGroupItem>
                     ))}
                 </ToggleGroup>
-                <Button variant="outline" className="min-w-fit py-[-1px]">
-                    Create event
-                </Button>
+                <Link href="/dashboard/events/new" className="min-w-fit">
+                    <Button variant="outline" className="min-w-fit py-1">
+                        Create event
+                    </Button>
+                </Link>
             </div>
             {currentEvents.length > 0 && (
                 <div className="space-y-3">

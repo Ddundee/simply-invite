@@ -12,7 +12,6 @@ import { cn } from "~/lib/utils";
 import { Button, ButtonGroup } from "./_components/button";
 import { Separator } from "@radix-ui/react-separator";
 import Card from "./_components/card";
-import Pricing from "./_components/pricing";
 import FAQs from "./_components/faqs";
 import {
     SignedIn,
@@ -118,7 +117,7 @@ export default function Page() {
                     </div>
                 </div>
 
-                <Pricing />
+                {/* <Pricing /> */}
 
                 <FAQs />
             </main>
@@ -157,7 +156,7 @@ export function Nav() {
                                 </ul>
                             </NavigationMenuContent>
                         </NavigationMenuItem>
-                        <NavigationMenuItem>
+                        {/* <NavigationMenuItem>
                             <Link href="/#pricing" legacyBehavior passHref>
                                 <NavigationMenuLink
                                     className={cn(
@@ -167,7 +166,7 @@ export function Nav() {
                                     Pricing
                                 </NavigationMenuLink>
                             </Link>
-                        </NavigationMenuItem>
+                        </NavigationMenuItem> */}
                         <NavigationMenuItem>
                             <Link href="/contact" legacyBehavior passHref>
                                 <NavigationMenuLink

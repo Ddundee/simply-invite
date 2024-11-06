@@ -64,9 +64,9 @@ export default function Layout({
                         </Link>
                     </SignedOut>
                     <SignedIn>
-                        <h2>
-                            {/* TODO: insert notif button */} Insert TODO Button
-                        </h2>
+                        {/* <h2>
+                            TODO: insert notif button  Insert TODO Button
+                        </h2> */}
                         <UserButton
                             appearance={{
                                 elements: { userButtonAvatarBox: "w-10 h-10" },

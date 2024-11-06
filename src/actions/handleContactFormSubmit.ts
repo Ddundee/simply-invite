@@ -12,7 +12,7 @@ interface DiscordEmbed {
     }[];
 }
 
-export default async function onContactFormSubmit(
+export default async function handleContactFormSubmit(
     values: z.infer<typeof contactFormSchema>,
 ) {
     const embed: DiscordEmbed = {

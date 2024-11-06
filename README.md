@@ -8,8 +8,8 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [x] Finish the code for contact page
 - [x] Add Clerk, Posthog, Sentry, and Drizzle integrations
 - [x] Make the schema for the database
-- [ ] Finish the code for the dashboard page
 - [ ] Finish the code for the create invite page
+- [ ] Finish the code for the dashboard page
 - [ ] Finish the code for the invitation page
 - [ ] Add a contribution page
 - [ ] Ability to delete invites

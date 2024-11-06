@@ -21,7 +21,7 @@ import {
 } from "~/components/ui/select";
 import { Button } from "./button";
 import { Textarea } from "~/components/ui/textarea";
-import onContactFormSubmit from "~/actions/handleContactFormSubmit";
+import handleContactFormSubmit from "~/actions/handleContactFormSubmit";
 import { toast } from "sonner";
 import { captureException } from "@sentry/nextjs";
 
@@ -70,7 +70,7 @@ export default function ContactForm() {
                         return;
                     }
                     toast.loading("Sending message...", { id: "contact-form" });
-                    onContactFormSubmit(data)
+                    handleContactFormSubmit(data)
                         .then(() => {
                             form.reset();
                             toast.success("Message sent!", {

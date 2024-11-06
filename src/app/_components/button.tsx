@@ -30,9 +30,9 @@ export function Button({
         primary:
             "cursor-pointer px-6 py-3 bg-blue text-primary-text gap-1 rounded-full flex items-center overflow-clip hover:bg-opacity-80 duration-100 justify-center",
         secondary:
-            "rounded-full border border-outline flex items-center cursor-pointer px-6 py-3 bg-primary-text bg-opacity-[.03] hover:bg-opacity-5 duration-100",
+            "rounded-full border border-outline flex items-center gap-1 cursor-pointer px-6 py-3 bg-primary-text bg-opacity-[.03] hover:bg-opacity-5 duration-100",
         outline:
-            "rounded-full border border-outline flex items-center cursor-pointer px-6 py-3 hover:bg-opacity-5 duration-100 bg-transparent",
+            "rounded-full border border-outline flex items-center gap-1 cursor-pointer px-6 py-3 hover:bg-opacity-5 duration-100 bg-transparent hover:bg-primary-text/5",
     };
     return (
         <button
