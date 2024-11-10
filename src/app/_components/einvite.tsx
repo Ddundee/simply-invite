@@ -1,9 +1,9 @@
-import { Separator } from "@radix-ui/react-select";
 import { format } from "date-fns";
 import React from "react";
 
 import Card from "./card";
 import { Button } from "./button";
+import { Separator } from "~/components/ui/separator";
 
 type Props = {
     title: string;

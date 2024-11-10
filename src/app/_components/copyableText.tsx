@@ -1,10 +1,15 @@
 "use client";
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
-import React, { type ReactNode, useState } from "react";
+import React, { type ReactNode, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function CopyableText() {
-    const url = window.location.href.split("dashboard/events").join("invite");
+    const [url, setUrl] = useState("")
+    useEffect(() => {
+        setTimeout(() => {
+            setUrl(window.location.href.split("dashboard/events").join("invite"));
+        }, 1)
+    }, [])
     const [state, setState] = useState<ReactNode>(
         <CopyIcon className="fill-secondary-text" />,
     );
