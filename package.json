@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "check": "next lint && tsc --noEmit",
+    "check": "concurrently --names \"lint,typecheck,format\" --prefix-colors \"yellow,blue,green\" \"next lint\" \"tsc --noEmit\" \"npm run format:check\"",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
@@ -50,6 +50,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "concurrently": "^9.1.0",
     "date-fns": "^3.6.0",
     "discord.js": "^14.16.3",
     "drizzle-orm": "^0.33.0",
@@ -82,8 +83,8 @@
     "eslint-plugin-drizzle": "^0.2.3",
     "pg": "^8.13.1",
     "postcss": "^8.4.39",
-    "prettier": "^3.3.2",
-    "prettier-plugin-tailwindcss": "^0.6.5",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.5.3"

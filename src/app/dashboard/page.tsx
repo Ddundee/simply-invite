@@ -39,21 +39,16 @@ export default function Page() {
             location: string;
             note: string | null;
             publicGuestList: boolean;
-        }[]
+        }[];
     }>({ events: [], filterdEvents: [] });
     const [fetched, setFetched] = useState(false);
     useEffect(() => {
-
         handleFetchAllEvents()
             .then((events) => {
-                events = events.sort(
-                    (a, b) => a.name.localeCompare(b.name)
-                )
+                events = events.sort((a, b) => a.name.localeCompare(b.name));
                 setFetchedEvents({ events, filterdEvents: events });
-                setFetched(true)
-            }
-
-            )
+                setFetched(true);
+            })
             .catch((_) =>
                 toast.error("Failed to fetch events", { id: "fetch-events" }),
             );
@@ -71,7 +66,7 @@ export default function Page() {
         .filter(({ date }) => new Date(date) > currentDate)
         .filter((event) => !currentEvents.includes(event));
 
-    const possibleSortSelections = ["Sort alphabetically", "Sort by date",];
+    const possibleSortSelections = ["Sort alphabetically", "Sort by date"];
     const possibleListToggles = [
         {
             value: "card",
@@ -89,14 +84,17 @@ export default function Page() {
             <div className="flex w-full gap-3">
                 <Input
                     placeholder="Search your events"
-                    className="flex-grow h-13"
+                    className="h-13 flex-grow"
                     onChange={(onChangeEvent) => {
                         setFetchedEvents({
                             ...fetchedEvents,
                             filterdEvents: fetchedEvents.events.filter(
-                                (event) => event.name.toLowerCase().includes(
-                                    onChangeEvent.target.value.toLowerCase(),
-                                ),
+                                (event) =>
+                                    event.name
+                                        .toLowerCase()
+                                        .includes(
+                                            onChangeEvent.target.value.toLowerCase(),
+                                        ),
                             ),
                         });
                     }}
@@ -104,7 +102,7 @@ export default function Page() {
 
                 <Select
                     onValueChange={(value) => {
-                        setSortValue(value)
+                        setSortValue(value);
                         setFetchedEvents({
                             ...fetchedEvents,
                             filterdEvents: fetchedEvents.filterdEvents.sort(
@@ -112,8 +110,10 @@ export default function Page() {
                                     if (value === "Sort alphabetically") {
                                         return a.name.localeCompare(b.name);
                                     }
-                                    return new Date(a.date).getTime() - new Date(b.date).getTime();
-
+                                    return (
+                                        new Date(a.date).getTime() -
+                                        new Date(b.date).getTime()
+                                    );
                                 },
                             ),
                         });
@@ -138,7 +138,11 @@ export default function Page() {
                     onValueChange={(value) => setListValue(value)}
                 >
                     {possibleListToggles.map((item, index) => (
-                        <ToggleGroupItem className="h-full" key={index} value={item.value}>
+                        <ToggleGroupItem
+                            className="h-full"
+                            key={index}
+                            value={item.value}
+                        >
                             {item.label}
                         </ToggleGroupItem>
                     ))}
@@ -149,8 +153,8 @@ export default function Page() {
                     </Button>
                 </Link>
             </div>
-            {
-                fetched ? <>
+            {fetched ? (
+                <>
                     {currentEvents.length > 0 && (
                         <div className="space-y-3">
                             <div className="flex items-center gap-2">
@@ -169,7 +173,9 @@ export default function Page() {
                     )}
                     {upcomingEvents.length > 0 && (
                         <div className="space-y-3">
-                            <h3>Upcoming event{upcomingEvents.length > 1 && "s"}</h3>
+                            <h3>
+                                Upcoming event{upcomingEvents.length > 1 && "s"}
+                            </h3>
                             <div className="grid w-full grid-cols-4 gap-3">
                                 {upcomingEvents.map((event, index) => (
                                     <InviteCard key={index} event={event} />
@@ -188,33 +194,33 @@ export default function Page() {
                         </div>
                     )}
                 </>
-                    :
-                    <>
-                        <div className="space-y-3">
-                            <Skeleton className="h-6 w-24 rounded-md" />
-                            <div className="grid w-full grid-cols-4 gap-3">
-                                <Skeleton className="h-40 w-full rounded-md" />
-                                <Skeleton className="h-40 w-full rounded-md" />
-                                <Skeleton className="h-40 w-full rounded-md" />
-                                <Skeleton className="h-40 w-full rounded-md" />
-                            </div>
+            ) : (
+                <>
+                    <div className="space-y-3">
+                        <Skeleton className="h-6 w-24 rounded-md" />
+                        <div className="grid w-full grid-cols-4 gap-3">
+                            <Skeleton className="h-40 w-full rounded-md" />
+                            <Skeleton className="h-40 w-full rounded-md" />
+                            <Skeleton className="h-40 w-full rounded-md" />
+                            <Skeleton className="h-40 w-full rounded-md" />
                         </div>
-                        <div className="space-y-3">
-                            <Skeleton className="h-6 w-24 rounded-md" />
-                            <div className="grid w-full grid-cols-4 gap-3">
-                                <Skeleton className="h-40 w-full rounded-md" />
-                                <Skeleton className="h-40 w-full rounded-md" />
-                                <Skeleton className="h-40 w-full rounded-md" />
-                            </div>
+                    </div>
+                    <div className="space-y-3">
+                        <Skeleton className="h-6 w-24 rounded-md" />
+                        <div className="grid w-full grid-cols-4 gap-3">
+                            <Skeleton className="h-40 w-full rounded-md" />
+                            <Skeleton className="h-40 w-full rounded-md" />
+                            <Skeleton className="h-40 w-full rounded-md" />
                         </div>
-                        <div className="space-y-3">
-                            <Skeleton className="h-6 w-24 rounded-md" />
-                            <div className="grid w-full grid-cols-4 gap-3">
-                                <Skeleton className="h-40 w-full rounded-md" />
-                            </div>
+                    </div>
+                    <div className="space-y-3">
+                        <Skeleton className="h-6 w-24 rounded-md" />
+                        <div className="grid w-full grid-cols-4 gap-3">
+                            <Skeleton className="h-40 w-full rounded-md" />
                         </div>
-                    </>
-            }
+                    </div>
+                </>
+            )}
         </main>
     );
 }
