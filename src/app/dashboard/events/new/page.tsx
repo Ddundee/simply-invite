@@ -92,8 +92,8 @@ export default function Page() {
                                 void router.push(
                                     `/dashboard/events/${id[0]?.id}`,
                                 );
-                            } catch (_) {
                                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                            } catch (_error) {
                                 toast.error(
                                     "Failed to create event! 😭 Please try again later.",
                                     { id: "create-event" },

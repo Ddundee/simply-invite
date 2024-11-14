@@ -65,3 +65,14 @@ export async function getEventById(id: number) {
     // if (!event) throw new Error("Event not found");
     return event;
 }
+
+export async function getAllEventsForUser() {
+    const user = await auth();
+    if (!user.userId) throw new Error("Unauthorized: Not logged in");
+
+    const events = await db.query.event.findMany({
+        where: ({ userId }, { eq }) => eq(userId, user.userId),
+    });
+
+    return events;
+}

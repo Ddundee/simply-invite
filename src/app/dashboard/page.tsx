@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "~/components/ui/input";
 import {
     Select,
@@ -14,139 +14,64 @@ import { Button } from "../_components/button";
 import InviteCard from "../_components/inviteCard";
 import { TextAlignJustifyIcon, ViewGridIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-
-export const events = [
-    {
-        openToRSVP: true,
-        title: "Birthday party",
-        date: new Date("2025-01-01"),
-        guestList: [
-            {
-                name: "John Doe",
-                status: "accepted",
-                guests: 10,
-            },
-            {
-                name: "Jane Doe",
-                status: "pending",
-                guests: 1,
-            },
-            {
-                name: "John Doe",
-                status: "declined",
-                guests: 1,
-            },
-            {
-                name: "Lil Jonny",
-                status: "accepted",
-                guests: 1,
-            },
-            {
-                name: "Mailman",
-                status: "pending",
-                guests: 1,
-            },
-            {
-                name: "Sum guy",
-                status: "declined",
-                guests: 1,
-            },
-        ], // TODO
-        id: 1092382903812903,
-    },
-    {
-        openToRSVP: true,
-        title: "Birthday party",
-        date: new Date("2022-01-01"),
-        guestList: [
-            {
-                name: "John Doe",
-                status: "accepted",
-                guests: 1,
-            },
-            {
-                name: "Jane Doe",
-                status: "pending",
-                guests: 1,
-            },
-            {
-                name: "John Doe",
-                status: "declined",
-                guests: 1,
-            },
-            {
-                name: "Lil Jonny",
-                status: "accepted",
-                guests: 3,
-            },
-            {
-                name: "Mailman",
-                status: "pending",
-                guests: 1,
-            },
-            {
-                name: "Sum guy",
-                status: "declined",
-                guests: 1,
-            },
-        ], // TODO
-        id: 1092382903812903,
-    },
-    {
-        openToRSVP: true,
-        title: "Birthday party",
-        date: Date.now(),
-        guestList: [
-            {
-                name: "John Doe",
-                status: "accepted",
-                guests: 1,
-            },
-            {
-                name: "Jane Doe",
-                status: "pending",
-                guests: 1,
-            },
-            {
-                name: "John Doe",
-                status: "declined",
-                guests: 1,
-            },
-            {
-                name: "Lil Jonny",
-                status: "accepted",
-                guests: 3,
-            },
-            {
-                name: "Mailman",
-                status: "pending",
-                guests: 1,
-            },
-            {
-                name: "Sum guy",
-                status: "declined",
-                guests: 1,
-            },
-        ], // TODO
-        id: 1092382903812903,
-    },
-];
+import handleFetchAllEvents from "~/actions/handleFetchAllEvents";
+import { toast } from "sonner";
+import { Skeleton } from "~/components/ui/skeleton";
 
 export default function Page() {
+    const [fetchedEvents, setFetchedEvents] = useState<{
+        events: {
+            date: Date;
+            id: number;
+            userId: string;
+            name: string;
+            hostName: string;
+            location: string;
+            note: string | null;
+            publicGuestList: boolean;
+        }[];
+        filterdEvents: {
+            date: Date;
+            id: number;
+            userId: string;
+            name: string;
+            hostName: string;
+            location: string;
+            note: string | null;
+            publicGuestList: boolean;
+        }[]
+    }>({ events: [], filterdEvents: [] });
+    const [fetched, setFetched] = useState(false);
+    useEffect(() => {
+
+        handleFetchAllEvents()
+            .then((events) => {
+                events = events.sort(
+                    (a, b) => a.name.localeCompare(b.name)
+                )
+                setFetchedEvents({ events, filterdEvents: events });
+                setFetched(true)
+            }
+
+            )
+            .catch((_) =>
+                toast.error("Failed to fetch events", { id: "fetch-events" }),
+            );
+    }, []);
     const currentDate = new Date();
 
-    const currentEvents = events.filter((event) => {
+    const currentEvents = fetchedEvents.filterdEvents.filter((event) => {
         const eventDate = new Date(event.date);
         return eventDate.toDateString() === currentDate.toDateString();
     });
-    const pastEvents = events
+    const pastEvents = fetchedEvents.filterdEvents
         .filter(({ date }) => new Date(date) < currentDate)
         .filter((event) => !currentEvents.includes(event));
-    const upcomingEvents = events
+    const upcomingEvents = fetchedEvents.filterdEvents
         .filter(({ date }) => new Date(date) > currentDate)
         .filter((event) => !currentEvents.includes(event));
 
-    const possibleSortSelections = ["Sort alphabetically", "Sort by date"];
+    const possibleSortSelections = ["Sort alphabetically", "Sort by date",];
     const possibleListToggles = [
         {
             value: "card",
@@ -162,13 +87,40 @@ export default function Page() {
     return (
         <main className="mx-16 my-6 space-y-3">
             <div className="flex w-full gap-3">
-                <Input placeholder="Search your events" className="flex-grow" />
+                <Input
+                    placeholder="Search your events"
+                    className="flex-grow h-13"
+                    onChange={(onChangeEvent) => {
+                        setFetchedEvents({
+                            ...fetchedEvents,
+                            filterdEvents: fetchedEvents.events.filter(
+                                (event) => event.name.toLowerCase().includes(
+                                    onChangeEvent.target.value.toLowerCase(),
+                                ),
+                            ),
+                        });
+                    }}
+                />
 
                 <Select
-                    onValueChange={(value) => setSortValue(value)}
+                    onValueChange={(value) => {
+                        setSortValue(value)
+                        setFetchedEvents({
+                            ...fetchedEvents,
+                            filterdEvents: fetchedEvents.filterdEvents.sort(
+                                (a, b) => {
+                                    if (value === "Sort alphabetically") {
+                                        return a.name.localeCompare(b.name);
+                                    }
+                                    return new Date(a.date).getTime() - new Date(b.date).getTime();
+
+                                },
+                            ),
+                        });
+                    }}
                     value={sortValue}
                 >
-                    <SelectTrigger>
+                    <SelectTrigger className="h-13">
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -186,57 +138,83 @@ export default function Page() {
                     onValueChange={(value) => setListValue(value)}
                 >
                     {possibleListToggles.map((item, index) => (
-                        <ToggleGroupItem key={index} value={item.value}>
+                        <ToggleGroupItem className="h-full" key={index} value={item.value}>
                             {item.label}
                         </ToggleGroupItem>
                     ))}
                 </ToggleGroup>
-                <Link href="/dashboard/events/new" className="min-w-fit">
-                    <Button variant="outline" className="min-w-fit py-1">
+                <Link href="/dashboard/events/new" className="">
+                    <Button variant="outline" className="text-nowrap">
                         Create event
                     </Button>
                 </Link>
             </div>
-            {currentEvents.length > 0 && (
-                <div className="space-y-3">
-                    <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 animate-pulse rounded-full bg-red-500 duration-1000" />
-                        <h3>
-                            Currently ongoing event
-                            {currentEvents.length > 1 && "s"}
-                        </h3>
-                    </div>
-                    <div className="grid w-full grid-cols-4 gap-3">
-                        {currentEvents.map((event, index) => (
-                            <InviteCard key={index} event={event} />
-                        ))}
-                    </div>
-                </div>
-            )}
-            {upcomingEvents.length > 0 && (
-                <div className="space-y-3">
-                    <h3>Upcoming event{upcomingEvents.length > 1 && "s"}</h3>
-                    <div className="grid w-full grid-cols-4 gap-3">
-                        {upcomingEvents.map((event, index) => (
-                            <InviteCard key={index} event={event} />
-                        ))}
-                    </div>
-                </div>
-            )}
-            {pastEvents.length > 0 && (
-                <div className="space-y-3">
-                    <h3>Past event{pastEvents.length > 1 && "s"}</h3>
-                    <div className="grid w-full grid-cols-4 gap-3">
-                        {pastEvents.map((event, index) => (
-                            <InviteCard key={index} event={event} />
-                        ))}
-                    </div>
-                </div>
-            )}
+            {
+                fetched ? <>
+                    {currentEvents.length > 0 && (
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-2">
+                                <div className="h-2 w-2 animate-pulse rounded-full bg-red-500 duration-1000" />
+                                <h3>
+                                    Currently ongoing event
+                                    {currentEvents.length > 1 && "s"}
+                                </h3>
+                            </div>
+                            <div className="grid w-full grid-cols-4 gap-3">
+                                {currentEvents.map((event, index) => (
+                                    <InviteCard key={index} event={event} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    {upcomingEvents.length > 0 && (
+                        <div className="space-y-3">
+                            <h3>Upcoming event{upcomingEvents.length > 1 && "s"}</h3>
+                            <div className="grid w-full grid-cols-4 gap-3">
+                                {upcomingEvents.map((event, index) => (
+                                    <InviteCard key={index} event={event} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    {pastEvents.length > 0 && (
+                        <div className="space-y-3">
+                            <h3>Past event{pastEvents.length > 1 && "s"}</h3>
+                            <div className="grid w-full grid-cols-4 gap-3">
+                                {pastEvents.map((event, index) => (
+                                    <InviteCard key={index} event={event} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </>
+                    :
+                    <>
+                        <div className="space-y-3">
+                            <Skeleton className="h-6 w-24 rounded-md" />
+                            <div className="grid w-full grid-cols-4 gap-3">
+                                <Skeleton className="h-40 w-full rounded-md" />
+                                <Skeleton className="h-40 w-full rounded-md" />
+                                <Skeleton className="h-40 w-full rounded-md" />
+                                <Skeleton className="h-40 w-full rounded-md" />
+                            </div>
+                        </div>
+                        <div className="space-y-3">
+                            <Skeleton className="h-6 w-24 rounded-md" />
+                            <div className="grid w-full grid-cols-4 gap-3">
+                                <Skeleton className="h-40 w-full rounded-md" />
+                                <Skeleton className="h-40 w-full rounded-md" />
+                                <Skeleton className="h-40 w-full rounded-md" />
+                            </div>
+                        </div>
+                        <div className="space-y-3">
+                            <Skeleton className="h-6 w-24 rounded-md" />
+                            <div className="grid w-full grid-cols-4 gap-3">
+                                <Skeleton className="h-40 w-full rounded-md" />
+                            </div>
+                        </div>
+                    </>
+            }
         </main>
     );
 }
-
-// function Dashboard() {
-
-// }

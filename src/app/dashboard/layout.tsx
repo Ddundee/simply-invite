@@ -25,7 +25,7 @@ export default function Layout({
                 id="nav"
             >
                 {/* <div className="flex items-center justify-between gap-12"> */}
-                <Link href={"/"} className="text-lg font-semibold text-blue">
+                <Link href={"/dashboard"} className="text-lg font-semibold text-blue">
                     Simply Invite
                 </Link>
                 {/* </div> */}

@@ -4,12 +4,14 @@ import React, { type ReactNode, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function CopyableText() {
-    const [url, setUrl] = useState("")
+    const [url, setUrl] = useState("");
     useEffect(() => {
         setTimeout(() => {
-            setUrl(window.location.href.split("dashboard/events").join("invite"));
-        }, 1)
-    }, [])
+            setUrl(
+                window.location.href.split("dashboard/events").join("invite"),
+            );
+        }, 1);
+    }, []);
     const [state, setState] = useState<ReactNode>(
         <CopyIcon className="fill-secondary-text" />,
     );
