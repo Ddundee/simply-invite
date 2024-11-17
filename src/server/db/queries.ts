@@ -4,7 +4,6 @@ import { db } from ".";
 import posthog from "posthog-js";
 import { event, guest } from "./schema";
 
-
 export async function getAllEvents() {
     const user = await auth();
 
@@ -83,14 +82,26 @@ export async function getAllEventsForUser() {
     return events;
 }
 
-export async function addGuest({ eventId, name, numGuests, response }: { eventId: number, name: string, numGuests: number, response: "accepted" | "declined" }) {
-
+export async function addGuest({
+    eventId,
+    name,
+    numGuests,
+    response,
+}: {
+    eventId: number;
+    name: string;
+    numGuests: number;
+    response: "accepted" | "declined";
+}) {
     posthog.capture("add guest");
 
-    return await db.insert(guest).values({
-        eventId,
-        name,
-        numGuests,
-        response
-    }).returning();
+    return await db
+        .insert(guest)
+        .values({
+            eventId,
+            name,
+            numGuests,
+            response,
+        })
+        .returning();
 }

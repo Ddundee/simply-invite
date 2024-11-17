@@ -26,21 +26,20 @@ export default function Page() {
     return (
         <>
             <Nav />
-            <main className="my-32 space-y-32 md:px-32 max-w-screen-xl mx-auto">
+            <main className="mx-auto my-32 max-w-screen-xl space-y-32 md:px-32">
                 <div
                     className="flex flex-col items-center justify-center space-y-9"
                     id="hero"
                 >
-                    <div className="flex flex-col justify-center items-center">
-                        <h1 className="text-center md:text-5xl text-4xl font-bold">
+                    <div className="flex flex-col items-center justify-center">
+                        <h1 className="text-center text-4xl font-bold md:text-5xl">
                             Your design, our delivery.
                             <br /> Invites made simple.
                         </h1>
-                        <p className="text-center text-secondary-text max-w-lg">
+                        <p className="max-w-lg text-center text-secondary-text">
                             An easy, dirt cheap way to share your event
-                            invitations. Upload your
-                            custom design, get a shareable link. And then
-                            party time 🥳.
+                            invitations. Upload your custom design, get a
+                            shareable link. And then party time 🥳.
                         </p>
                     </div>
                     <SignUpButton>
@@ -54,17 +53,17 @@ export default function Page() {
                     <h2 className="text-center text-2xl font-medium">
                         People love us
                     </h2>
-                    <div className="flex items-center justify-center md:gap-12 gap-6">
+                    <div className="flex items-center justify-center gap-6 md:gap-12">
                         <div className="flex flex-col items-center gap-3">
                             <h3 className="text-5xl font-semibold text-blue">
                                 {0}
                             </h3>
-                            <p className="text-secondary-text text-nowrap">
+                            <p className="text-nowrap text-secondary-text">
                                 Events Created
                             </p>
                         </div>
                         <Separator
-                            className="h-20 w-px bg-outline invisible md:block"
+                            className="invisible h-20 w-px bg-outline md:block"
                             orientation="vertical"
                         />
                         <div className="flex flex-col items-center gap-3">
@@ -74,14 +73,14 @@ export default function Page() {
                             <p className="text-secondary-text">Users</p>
                         </div>
                         <Separator
-                            className="h-20 w-px bg-outline invisible md:block"
+                            className="invisible h-20 w-px bg-outline md:block"
                             orientation="vertical"
                         />
                         <div className="flex flex-col items-center gap-3">
                             <h3 className="text-5xl font-semibold text-blue">
                                 {100}%
                             </h3>
-                            <p className="text-secondary-text text-nowrap">
+                            <p className="text-nowrap text-secondary-text">
                                 Satisfaction rate (by me)
                             </p>
                         </div>
@@ -133,7 +132,7 @@ export function Nav() {
             className="flex justify-between border-b border-outline px-32 py-6"
             id="nav"
         >
-            <div className="flex items-center justify-between gap-12 max-w-screen-xl">
+            <div className="flex max-w-screen-xl items-center justify-between gap-12">
                 <Link href={"/"} className="text-lg font-semibold text-blue">
                     Simply Invite
                 </Link>
@@ -216,8 +215,11 @@ export function Nav() {
 export function Footer() {
     return (
         <footer className="">
-            <div className="mb-9 space-y-9 px-32 max-w-screen-xl mx-auto" id="footer">
-                <div className="flex flex-wrap gap-20 justify-between">
+            <div
+                className="mx-auto mb-9 max-w-screen-xl space-y-9 px-32"
+                id="footer"
+            >
+                <div className="flex flex-wrap justify-between gap-20">
                     <Link
                         href={"/"}
                         className="text-lg font-semibold text-blue"
@@ -275,7 +277,7 @@ export function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-between border-t border-outline p-4 px-32 text-secondary-text max-w-screen-xl mx-auto">
+            <div className="mx-auto flex max-w-screen-xl justify-between border-t border-outline p-4 px-32 text-secondary-text">
                 <p>© 2024 Simply Invite - All rights reserved.</p>
                 <div>
                     Founded by{" "}

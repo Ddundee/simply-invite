@@ -7,13 +7,13 @@ import Loading from "./loading";
 import InvitationResponse from "~/app/_components/invitation-response";
 type Props = {
     params: { id: string };
-}
+};
 
 export default async function Page({ params }: Props) {
-    const { id } = params
+    const { id } = params;
     if (!Number.isInteger(+id)) return <NotFound />;
 
-    const eventPromise = getEventById(+id)
+    const eventPromise = getEventById(+id);
 
     return (
         <>
@@ -22,7 +22,6 @@ export default async function Page({ params }: Props) {
                 <Data eventPromise={eventPromise} />
             </Suspense>
         </>
-
     );
 }
 
@@ -38,17 +37,20 @@ function NotFound() {
 }
 
 type DataProps = {
-    eventPromise: Promise<{
-        id: number;
-        date: Date;
-        userId: string;
-        name: string;
-        hostName: string;
-        location: string;
-        note: string | null;
-        publicGuestList: boolean;
-    } | undefined>
-}
+    eventPromise: Promise<
+        | {
+              id: number;
+              date: Date;
+              userId: string;
+              name: string;
+              hostName: string;
+              location: string;
+              note: string | null;
+              publicGuestList: boolean;
+          }
+        | undefined
+    >;
+};
 
 async function Data({ eventPromise }: DataProps) {
     const event = await eventPromise;
@@ -68,6 +70,5 @@ async function Data({ eventPromise }: DataProps) {
                 />
             </div>
         </>
-
     );
 }
