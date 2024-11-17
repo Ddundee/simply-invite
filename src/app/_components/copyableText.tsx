@@ -42,7 +42,7 @@ export default function CopyableText() {
                                 );
                             }, 4000);
                         })
-                        .catch((_) => {
+                        .catch(() => {
                             toast.error("Failed to copy to clipboard", {
                                 id: "copyable-text",
                             });

@@ -93,7 +93,7 @@ export default function Page() {
                                     `/dashboard/events/${id[0]?.id}`,
                                 );
                                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                            } catch (_error) {
+                            } catch {
                                 toast.error(
                                     "Failed to create event! 😭 Please try again later.",
                                     { id: "create-event" },
@@ -132,7 +132,7 @@ export default function Page() {
                                                     className={cn(
                                                         "pl-3 text-left font-normal",
                                                         !field.value &&
-                                                            "text-muted-foreground",
+                                                        "text-muted-foreground",
                                                     )}
                                                 >
                                                     {field.value ? (

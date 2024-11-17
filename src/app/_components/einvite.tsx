@@ -23,7 +23,7 @@ export default function EInvite({
     publicGuestList,
 }: Props) {
     return (
-        <main className="hidden flex-col gap-9 border-b p-16 sm:flex md:grid-cols-2 lg:col-span-2">
+        <div className="hidden flex-col gap-9 p-16 sm:flex md:grid-cols-2 lg:col-span-2">
             <Card
                 title={title ? title : ""}
                 className="space-y-4 [&>h4]:truncate [&>h4]:text-2xl"
@@ -98,6 +98,6 @@ export default function EInvite({
                     </>
                 )}
             </Card>
-        </main>
+        </div>
     );
 }

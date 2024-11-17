@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { Input } from "~/components/ui/input";
 import {
@@ -49,7 +48,7 @@ export default function Page() {
                 setFetchedEvents({ events, filterdEvents: events });
                 setFetched(true);
             })
-            .catch((_) =>
+            .catch(() =>
                 toast.error("Failed to fetch events", { id: "fetch-events" }),
             );
     }, []);

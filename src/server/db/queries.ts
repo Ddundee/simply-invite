@@ -2,7 +2,9 @@ import { auth } from "@clerk/nextjs/server";
 import "server-only";
 import { db } from ".";
 import posthog from "posthog-js";
-import { event } from "./schema";
+import { event, guest } from "./schema";
+
+
 export async function getAllEvents() {
     const user = await auth();
 
@@ -50,6 +52,8 @@ export async function createEvent({
         })
         .returning({ id: event.id });
 
+    posthog.capture("create new event");
+
     return id;
 }
 
@@ -61,6 +65,8 @@ export async function getEventById(id: number) {
         where: (model, { eq, and }) =>
             and(eq(model.id, id), eq(model.userId, user.userId)),
     });
+
+    posthog.capture("get event by id");
 
     // if (!event) throw new Error("Event not found");
     return event;
@@ -75,4 +81,16 @@ export async function getAllEventsForUser() {
     });
 
     return events;
+}
+
+export async function addGuest({ eventId, name, numGuests, response }: { eventId: number, name: string, numGuests: number, response: "accepted" | "declined" }) {
+
+    posthog.capture("add guest");
+
+    return await db.insert(guest).values({
+        eventId,
+        name,
+        numGuests,
+        response
+    }).returning();
 }

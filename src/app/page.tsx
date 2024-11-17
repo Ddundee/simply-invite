@@ -26,44 +26,45 @@ export default function Page() {
     return (
         <>
             <Nav />
-            <main className="my-32 space-y-32 px-32">
+            <main className="my-32 space-y-32 md:px-32 max-w-screen-xl mx-auto">
                 <div
                     className="flex flex-col items-center justify-center space-y-9"
                     id="hero"
                 >
-                    <div className="space-y-2">
-                        <h1 className="text-center text-5xl font-bold">
+                    <div className="flex flex-col justify-center items-center">
+                        <h1 className="text-center md:text-5xl text-4xl font-bold">
                             Your design, our delivery.
                             <br /> Invites made simple.
                         </h1>
-                        <p className="text-center text-secondary-text">
+                        <p className="text-center text-secondary-text max-w-lg">
                             An easy, dirt cheap way to share your event
                             invitations. Upload your
-                            <br /> custom design, get a shareable link. And then
+                            custom design, get a shareable link. And then
                             party time 🥳.
                         </p>
                     </div>
-                    <Button>
-                        Invite Now
-                        <ArrowRightIcon />
-                    </Button>
+                    <SignUpButton>
+                        <Button>
+                            Invite Now <ArrowRightIcon />
+                        </Button>
+                    </SignUpButton>
                 </div>
 
                 <div className="space-y-9">
                     <h2 className="text-center text-2xl font-medium">
                         People love us
                     </h2>
-                    <div className="flex items-center justify-center gap-12">
+                    <div className="flex items-center justify-center md:gap-12 gap-6">
                         <div className="flex flex-col items-center gap-3">
                             <h3 className="text-5xl font-semibold text-blue">
                                 {0}
                             </h3>
-                            <p className="text-secondary-text">
+                            <p className="text-secondary-text text-nowrap">
                                 Events Created
                             </p>
                         </div>
                         <Separator
-                            className="h-20 w-px bg-outline"
+                            className="h-20 w-px bg-outline invisible md:block"
                             orientation="vertical"
                         />
                         <div className="flex flex-col items-center gap-3">
@@ -73,14 +74,14 @@ export default function Page() {
                             <p className="text-secondary-text">Users</p>
                         </div>
                         <Separator
-                            className="h-20 w-px bg-outline"
+                            className="h-20 w-px bg-outline invisible md:block"
                             orientation="vertical"
                         />
                         <div className="flex flex-col items-center gap-3">
                             <h3 className="text-5xl font-semibold text-blue">
                                 {100}%
                             </h3>
-                            <p className="text-secondary-text">
+                            <p className="text-secondary-text text-nowrap">
                                 Satisfaction rate (by me)
                             </p>
                         </div>
@@ -132,7 +133,7 @@ export function Nav() {
             className="flex justify-between border-b border-outline px-32 py-6"
             id="nav"
         >
-            <div className="flex items-center justify-between gap-12">
+            <div className="flex items-center justify-between gap-12 max-w-screen-xl">
                 <Link href={"/"} className="text-lg font-semibold text-blue">
                     Simply Invite
                 </Link>
@@ -187,9 +188,11 @@ export function Nav() {
                         <SignInButton>Sign in</SignInButton>
                         <SignUpButton>Sign up</SignUpButton>
                     </ButtonGroup>
-                    <Button>
-                        Invite Now <ArrowRightIcon />
-                    </Button>
+                    <SignUpButton>
+                        <Button>
+                            Invite Now <ArrowRightIcon />
+                        </Button>
+                    </SignUpButton>
                 </SignedOut>
                 <SignedIn>
                     <Button variant="secondary">
@@ -212,16 +215,16 @@ export function Nav() {
 
 export function Footer() {
     return (
-        <footer>
-            <div className="mb-9 space-y-9 px-32" id="footer">
-                <div className="flex justify-between">
+        <footer className="">
+            <div className="mb-9 space-y-9 px-32 max-w-screen-xl mx-auto" id="footer">
+                <div className="flex flex-wrap gap-20 justify-between">
                     <Link
                         href={"/"}
                         className="text-lg font-semibold text-blue"
                     >
                         Simply Invite
                     </Link>
-                    <div className="flex gap-12">
+                    <div className="flex flex-wrap gap-12">
                         <div className="space-y-6">
                             <p>Company</p>
                             <ul className="space-y-3 text-secondary-text hover:[&>*]:underline">
@@ -272,7 +275,7 @@ export function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-between border-t border-outline p-4 px-32 text-secondary-text">
+            <div className="flex justify-between border-t border-outline p-4 px-32 text-secondary-text max-w-screen-xl mx-auto">
                 <p>© 2024 Simply Invite - All rights reserved.</p>
                 <div>
                     Founded by{" "}
