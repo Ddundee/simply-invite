@@ -10,7 +10,7 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [x] Make the schema for the database
 - [x] Finish the code for the create invite page
 - [x] Finish the code for the dashboard page
-- [ ] Finish the code for the invitation page
+- [x] Finish the code for the invitation page
 - [ ] Add a contribution page
 - [ ] Ability to delete invites
 - [ ] Figure out the pricing or how to make it free

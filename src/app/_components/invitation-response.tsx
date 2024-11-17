@@ -26,8 +26,8 @@ import {
 import { Button } from "./button";
 
 const formSchema = z.object({
+    name: z.string().min(2).max(50),
     coming: z.boolean().default(false),
-    name: z.string().min(2).max(50).optional(),
     numPeople: z.number().int().min(1).max(10).optional(),
 });
 
@@ -98,27 +98,7 @@ export default function InvitationResponse({ id }: Props) {
                     >
                         <FormField
                             control={form.control}
-                            name="coming"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                                    <FormControl>
-                                        <Checkbox
-                                            checked={field.value}
-                                            onCheckedChange={field.onChange}
-                                        />
-                                    </FormControl>
-                                    <div className="space-y-1 leading-none">
-                                        <FormLabel>
-                                            So are you coming?
-                                        </FormLabel>
-                                    </div>
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
                             name="name"
-                            disabled={!form.getValues("coming")}
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel
@@ -137,6 +117,25 @@ export default function InvitationResponse({ id }: Props) {
                                         />
                                     </FormControl>
                                     <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="coming"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            So are you coming?
+                                        </FormLabel>
+                                    </div>
                                 </FormItem>
                             )}
                         />
