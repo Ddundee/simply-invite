@@ -15,17 +15,19 @@ export function ButtonGroup({ children }: { children: React.ReactNode[] }) {
         </div>
     );
 }
-export function Button({
-    children,
-    className,
-    variant,
-    type,
-}: {
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     className?: string;
     variant?: "primary" | "secondary" | "outline";
     type?: "submit";
-}) {
+}
+export function Button({
+    children,
+    className,
+    variant,
+    ...props
+}: ButtonProps) {
     const classNames = {
         primary:
             "cursor-pointer px-6 py-3 bg-blue text-primary-text gap-1 rounded-full flex items-center overflow-clip hover:bg-opacity-80 duration-100 justify-center",
@@ -37,7 +39,7 @@ export function Button({
     return (
         <button
             className={cn(classNames[variant ? variant : "primary"], className)}
-            type={type}
+            {...props}
         >
             {children}
         </button>

@@ -26,7 +26,7 @@ export default function Page() {
     return (
         <>
             <Nav />
-            <main className="mx-auto my-32 max-w-screen-xl space-y-32 md:px-32">
+            <main className="mx-auto my-32 max-w-screen-xl space-y-32 p-4 md:px-32">
                 <div
                     className="flex flex-col items-center justify-center space-y-9"
                     id="hero"
@@ -43,7 +43,7 @@ export default function Page() {
                         </p>
                     </div>
                     <SignUpButton>
-                        <Button>
+                        <Button className="fade-in">
                             Invite Now <ArrowRightIcon />
                         </Button>
                     </SignUpButton>
@@ -89,7 +89,7 @@ export default function Page() {
 
                 <div className="space-y-9" id="how-it-works">
                     <h2 className="text-2xl font-medium">How it works</h2>
-                    <div className="grid grid-cols-3 gap-6">
+                    <div className="grid lg:grid-cols-3 gap-6">
                         <Card title="1. Upload Your Invitation Design">
                             <p className="text-secondary-text">
                                 Already have a design? Perfect! Just upload your
@@ -129,14 +129,14 @@ export default function Page() {
 export function Nav() {
     return (
         <nav
-            className="flex justify-between border-b border-outline px-32 py-6"
+            className="flex justify-between border-b border-outline p-4 md:px-32 py-6"
             id="nav"
         >
             <div className="flex max-w-screen-xl items-center justify-between gap-12">
                 <Link href={"/"} className="text-lg font-semibold text-blue">
                     Simply Invite
                 </Link>
-                <NavigationMenu>
+                <NavigationMenu className="hidden md:block">
                     <NavigationMenuList className="space-x-1">
                         <NavigationMenuItem>
                             <NavigationMenuTrigger>
@@ -181,11 +181,11 @@ export function Nav() {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div className="flex gap-3">
+            <div className="gap-3 fade-in hidden md:flex">
                 <SignedOut>
                     <ButtonGroup>
-                        <SignInButton>Sign in</SignInButton>
-                        <SignUpButton>Sign up</SignUpButton>
+                        <div className="fade-in"><SignInButton>Sign in</SignInButton></div>
+                        <div className="fade-in"><SignUpButton>Sign up</SignUpButton></div>
                     </ButtonGroup>
                     <SignUpButton>
                         <Button>
@@ -277,7 +277,7 @@ export function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="mx-auto flex max-w-screen-xl justify-between border-t border-outline p-4 px-32 text-secondary-text">
+            <div className="mx-auto flex max-w-screen-xl justify-between border-t border-outline p-4 md:px-32 text-secondary-text">
                 <p>© 2024 Simply Invite - All rights reserved.</p>
                 <div>
                     Founded by{" "}

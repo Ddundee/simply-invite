@@ -1,6 +1,6 @@
 # Simply Invite
 
-InviteLink is a event invitation app where users can upload their own invitation designs, generate a shareable link, and choose to send invitations via email or SMS.
+InviteLink is a event invitation app where users can upload their own invitation designs, generate a shareable link, and choose to send invitations via email or SMS (Email/SMS is still a work in progress 😭).
 
 ## TODO
 - [x] Design the basic layout in Figma
@@ -12,6 +12,7 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [x] Finish the code for the dashboard page
 - [x] Finish the code for the invitation page
 - [ ] Add a contribution page
+- [ ] Add a hamburger menu for dashboard nav and landing page nav
 - [ ] Ability to delete invites
 - [ ] Figure out the pricing or how to make it free
 - [ ] Add a way to upload images

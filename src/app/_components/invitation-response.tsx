@@ -37,19 +37,22 @@ type Props = {
 export default function InvitationResponse({ id }: Props) {
     const [responded, setResponded] = React.useState(false);
     const [respond, setRespond] = React.useState(false);
+    const callToast = () => {
+        toast("You have been invited!", {
+            id: "invitation-dialog",
+            action: {
+                label: "Respond to invitation",
+                onClick: () => {
+                    // handleInvitation(id, true, 1)
+                    setRespond(true);
+                },
+            },
+            duration: Infinity,
+        });
+    }
     useEffect(() => {
         if (!responded) {
-            toast("You have been invited!", {
-                id: "invitation-dialog",
-                action: {
-                    label: "Respond to invitation",
-                    onClick: () => {
-                        // handleInvitation(id, true, 1)
-                        setRespond(true);
-                    },
-                },
-                duration: Infinity,
-            });
+            callToast()
         } else setResponded(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -82,7 +85,10 @@ export default function InvitationResponse({ id }: Props) {
             toast.error("Failed to respond to invitation", {
                 id: "invitation-response",
             });
+            callToast();
+
         }
+        setRespond(false);
     }
 
     return (

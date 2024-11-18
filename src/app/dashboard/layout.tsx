@@ -29,7 +29,7 @@ export default function Layout({
                     href={"/dashboard"}
                     className="text-lg font-semibold text-blue"
                 >
-                    Simply Invite
+                    Dashboard
                 </Link>
                 {/* </div> */}
                 <div className="flex gap-3">
@@ -47,14 +47,16 @@ export default function Layout({
                                 </Link>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <NavigationMenuLink
-                                    className={cn(
-                                        "block rounded-md p-3 text-sm leading-none text-secondary-text no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                                    )}
-                                >
-                                    Request features
-                                </NavigationMenuLink>
-                                {/* <Link href="/contact" legacyBehavior passHref> */}
+                                <Link href="/contact" legacyBehavior passHref>
+                                    <NavigationMenuLink
+                                        className={cn(
+                                            "block rounded-md p-3 text-sm leading-none text-secondary-text no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                                        )}
+                                    >
+                                        Request features
+                                    </NavigationMenuLink>
+                                </Link>
+
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
