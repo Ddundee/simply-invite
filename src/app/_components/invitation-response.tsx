@@ -36,7 +36,7 @@ type Props = {
 };
 export default function InvitationResponse({ id }: Props) {
     const [responded, setResponded] = React.useState(false);
-    const [respond, setRespond] = React.useState(true);
+    const [respond, setRespond] = React.useState(false);
     useEffect(() => {
         if (!responded) {
             toast("You have been invited!", {
@@ -173,12 +173,11 @@ export default function InvitationResponse({ id }: Props) {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit">Submit</Button>
+                        <DialogFooter>
+                            <Button type="submit">Confirm</Button>
+                        </DialogFooter>
                     </form>
                 </Form>
-                <DialogFooter>
-                    <Button type="submit">Confirm</Button>
-                </DialogFooter>
             </DialogContent>
         </Dialog>
     );

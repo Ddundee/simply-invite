@@ -6,26 +6,34 @@ import { Button } from "./button";
 import { Separator } from "~/components/ui/separator";
 
 type Props = {
-    title: string;
-    date: Date;
-    location: string;
-    hostName: string;
-    note: string | undefined | null;
-    publicGuestList: boolean;
+    event: {
+        date: Date;
+        id?: number;
+        userId?: string;
+        name: string;
+        hostName: string;
+        location: string;
+        note: string | null;
+        publicGuestList: boolean;
+    };
+    guests?: {
+        id: number;
+        name: string;
+        eventId: number;
+        numGuests: number;
+        response: "accepted" | "declined" | "pending";
+    }[];
 };
 // name: ["name", "date", "location", "hostName", "note", "publicGuestList"]
 export default function EInvite({
-    title,
-    date,
-    location,
-    hostName,
-    note,
-    publicGuestList,
+    event: { name, date, location, hostName, note, publicGuestList },
+
+    guests,
 }: Props) {
     return (
         <div className="hidden flex-col gap-9 p-16 sm:flex md:grid-cols-2 lg:col-span-2">
             <Card
-                title={title ? title : ""}
+                title={name ? name : ""}
                 className="space-y-4 [&>h4]:truncate [&>h4]:text-2xl"
             >
                 {date && (
@@ -73,24 +81,19 @@ export default function EInvite({
                                     </div>
                                 </div>
                             )}
-                            <div className="space-y-2 rounded-lg border p-2">
-                                <div className="flex justify-between">
-                                    <h6>John Doe</h6>
-                                    <p className="text-green-500">3 guests</p>
+                            {guests?.map((guest) => (
+                                <div
+                                    className="space-y-2 rounded-lg border p-2"
+                                    key={guest.id}
+                                >
+                                    <div className="flex justify-between">
+                                        <h6>{guest.name}</h6>
+                                        <p className="text-green-500">
+                                            {guest.numGuests} guests
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="space-y-2 rounded-lg border p-2">
-                                <div className="flex justify-between">
-                                    <h6>Diabeeto</h6>
-                                    <p className="text-green-500">5 guests</p>
-                                </div>
-                            </div>
-                            <div className="space-y-2 rounded-lg border p-2">
-                                <div className="flex justify-between">
-                                    <h6>Big man man</h6>
-                                    <p className="text-green-500">1 guests</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                         <div className="flex w-full justify-end">
                             <Button variant="outline">See more</Button>

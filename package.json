@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "check": "concurrently --names \"lint,typecheck,format,format\" --prefix-colors \"yellow,blue,green,green\" \"next lint && echo '[LINTING]'\" \"tsc --noEmit && echo '[TS CHECK DONE]'\" \"pnpm run format:write && echo '[WRITING FORMAT]'\" \"pnpm run format:check && echo '[CHECKING FORMAT]'\"",
+    "check": "concurrently --names \"lint,typecheck,format\" --prefix-colors \"yellow,blue,green\" \"next lint\" \"tsc --noEmit\" \"npm run format:check\"",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
@@ -16,15 +16,14 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
-    "preinstall": "npx only-allow pnpm",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "format:write:prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:check:prettier": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:write:eslint": "eslint . --fix",
     "format:check:eslint": "eslint .",
-    "format:write": "pnpm run format:write:prettier && pnpm run format:write:eslint",
-    "format:check": "pnpm run format:check:prettier && pnpm run format:check:eslint"
+    "format:write": "npm run format:write:prettier && npm run format:write:eslint",
+    "format:check": "npm run format:check:prettier && npm run format:check:eslint"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.1.0",
@@ -95,10 +94,5 @@
   "ct3aMetadata": {
     "initVersion": "7.38.0"
   },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
-  }
+  "packageManager": "npm@10.8.3"
 }

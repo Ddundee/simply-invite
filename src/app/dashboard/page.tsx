@@ -28,6 +28,7 @@ export default function Page() {
             location: string;
             note: string | null;
             publicGuestList: boolean;
+            numGuests: number;
         }[];
         filterdEvents: {
             date: Date;
@@ -38,6 +39,7 @@ export default function Page() {
             location: string;
             note: string | null;
             publicGuestList: boolean;
+            numGuests: number;
         }[];
     }>({ events: [], filterdEvents: [] });
     const [fetched, setFetched] = useState(false);

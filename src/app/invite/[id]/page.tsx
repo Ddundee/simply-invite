@@ -37,37 +37,39 @@ function NotFound() {
 }
 
 type DataProps = {
-    eventPromise: Promise<
-        | {
-              id: number;
-              date: Date;
-              userId: string;
-              name: string;
-              hostName: string;
-              location: string;
-              note: string | null;
-              publicGuestList: boolean;
-          }
-        | undefined
-    >;
+    eventPromise: Promise<{
+        guests: {
+            id: number;
+            name: string;
+            eventId: number;
+            numGuests: number;
+            response: "accepted" | "declined" | "pending";
+        }[];
+        event:
+            | {
+                  id: number;
+                  date: Date;
+                  userId: string;
+                  name: string;
+                  hostName: string;
+                  location: string;
+                  note: string | null;
+                  publicGuestList: boolean;
+              }
+            | undefined;
+    }>;
 };
 
 async function Data({ eventPromise }: DataProps) {
-    const event = await eventPromise;
+    const { event, guests } = await eventPromise;
 
     if (!event) return <NotFound />;
+    if (!guests) return <NotFound />;
 
     return (
         <>
             <div className="min-h-full">
-                <EInvite
-                    title={event.name}
-                    date={event.date}
-                    location={event.location}
-                    hostName={event.hostName}
-                    note={event.note}
-                    publicGuestList={event.publicGuestList}
-                />
+                <EInvite event={event} guests={guests} />
             </div>
         </>
     );

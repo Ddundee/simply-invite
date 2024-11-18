@@ -68,12 +68,14 @@ export default function Page() {
     return (
         <div className="min-h-full md:grid md:grid-cols-2 lg:grid-cols-3">
             <EInvite
-                title={values[0]}
-                date={values[1]}
-                location={values[2]}
-                hostName={values[3]}
-                note={values[4]}
-                publicGuestList={values[5]}
+                event={{
+                    date: values[1],
+                    name: values[0],
+                    location: values[2],
+                    hostName: values[3],
+                    note: values[4] ? values[4] : null,
+                    publicGuestList: values[5],
+                }}
             />
             <section className="min-h-full space-y-9 border-l p-6">
                 <h1 className="text-2xl">Let&apos;s create an event</h1>
@@ -132,7 +134,7 @@ export default function Page() {
                                                     className={cn(
                                                         "pl-3 text-left font-normal",
                                                         !field.value &&
-                                                            "text-muted-foreground",
+                                                        "text-muted-foreground",
                                                     )}
                                                 >
                                                     {field.value ? (

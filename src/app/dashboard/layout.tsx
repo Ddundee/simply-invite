@@ -54,6 +54,7 @@ export default function Layout({
                                 >
                                     Request features
                                 </NavigationMenuLink>
+                                {/* <Link href="/contact" legacyBehavior passHref> */}
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>

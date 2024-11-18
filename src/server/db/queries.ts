@@ -13,9 +13,18 @@ export async function getAllEvents() {
         where: (model, { eq }) => eq(model.userId, user.userId),
     });
 
+    const eventsWithGuests = Promise.all(
+        events.map(async (event) => {
+            const numGuests = await db.query.guest.findMany({
+                where: (model, { eq }) => eq(model.eventId, event.id),
+            });
+            return { ...event, numGuests: numGuests.length };
+        }),
+    );
+
     posthog.capture("get all events for user");
 
-    return events;
+    return await eventsWithGuests;
 }
 
 export type createEventParamType = {
@@ -60,26 +69,20 @@ export async function getEventById(id: number) {
     const user = await auth();
     if (!user.userId) throw new Error("Unauthorized: Not logged in");
 
-    const event = await db.query.event.findFirst({
+    const eventPromise = db.query.event.findFirst({
         where: (model, { eq, and }) =>
             and(eq(model.id, id), eq(model.userId, user.userId)),
     });
+    const guestsPromise = db.query.guest.findMany({
+        where: (model, { eq }) => eq(model.eventId, id),
+    });
+
+    const [event, guests] = await Promise.all([eventPromise, guestsPromise]);
 
     posthog.capture("get event by id");
 
     // if (!event) throw new Error("Event not found");
-    return event;
-}
-
-export async function getAllEventsForUser() {
-    const user = await auth();
-    if (!user.userId) throw new Error("Unauthorized: Not logged in");
-
-    const events = await db.query.event.findMany({
-        where: ({ userId }, { eq }) => eq(userId, user.userId),
-    });
-
-    return events;
+    return { event, guests };
 }
 
 export async function addGuest({
