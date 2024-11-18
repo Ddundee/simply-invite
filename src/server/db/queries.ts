@@ -18,7 +18,12 @@ export async function getAllEvents() {
             const numGuests = await db.query.guest.findMany({
                 where: (model, { eq }) => eq(model.eventId, event.id),
             });
-            return { ...event, numGuests: numGuests.length };
+            return {
+                ...event,
+                numGuests: numGuests
+                    .map((g) => g.numGuests)
+                    .reduce((a, b) => a + b, 0),
+            };
         }),
     );
 
