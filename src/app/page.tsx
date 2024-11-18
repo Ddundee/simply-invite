@@ -89,7 +89,7 @@ export default function Page() {
 
                 <div className="space-y-9" id="how-it-works">
                     <h2 className="text-2xl font-medium">How it works</h2>
-                    <div className="grid lg:grid-cols-3 gap-6">
+                    <div className="grid gap-6 lg:grid-cols-3">
                         <Card title="1. Upload Your Invitation Design">
                             <p className="text-secondary-text">
                                 Already have a design? Perfect! Just upload your
@@ -129,7 +129,7 @@ export default function Page() {
 export function Nav() {
     return (
         <nav
-            className="flex justify-between border-b border-outline p-4 md:px-32 py-6"
+            className="flex justify-between border-b border-outline p-4 py-6 md:px-32"
             id="nav"
         >
             <div className="flex max-w-screen-xl items-center justify-between gap-12">
@@ -181,11 +181,15 @@ export function Nav() {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div className="gap-3 fade-in hidden md:flex">
+            <div className="hidden gap-3 fade-in md:flex">
                 <SignedOut>
                     <ButtonGroup>
-                        <div className="fade-in"><SignInButton>Sign in</SignInButton></div>
-                        <div className="fade-in"><SignUpButton>Sign up</SignUpButton></div>
+                        <div className="fade-in">
+                            <SignInButton>Sign in</SignInButton>
+                        </div>
+                        <div className="fade-in">
+                            <SignUpButton>Sign up</SignUpButton>
+                        </div>
                     </ButtonGroup>
                     <SignUpButton>
                         <Button>
@@ -277,7 +281,7 @@ export function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="mx-auto flex max-w-screen-xl justify-between border-t border-outline p-4 md:px-32 text-secondary-text">
+            <div className="mx-auto flex max-w-screen-xl justify-between border-t border-outline p-4 text-secondary-text md:px-32">
                 <p>© 2024 Simply Invite - All rights reserved.</p>
                 <div>
                     Founded by{" "}

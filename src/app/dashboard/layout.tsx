@@ -56,7 +56,6 @@ export default function Layout({
                                         Request features
                                     </NavigationMenuLink>
                                 </Link>
-
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>

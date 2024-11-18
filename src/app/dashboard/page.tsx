@@ -165,7 +165,7 @@ export default function Page() {
                                     {currentEvents.length > 1 && "s"}
                                 </h3>
                             </div>
-                            <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                                 {currentEvents.map((event, index) => (
                                     <InviteCard key={index} event={event} />
                                 ))}
@@ -177,7 +177,7 @@ export default function Page() {
                             <h3>
                                 Upcoming event{upcomingEvents.length > 1 && "s"}
                             </h3>
-                            <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                                 {upcomingEvents.map((event, index) => (
                                     <InviteCard key={index} event={event} />
                                 ))}
@@ -187,7 +187,7 @@ export default function Page() {
                     {pastEvents.length > 0 && (
                         <div className="space-y-3">
                             <h3>Past event{pastEvents.length > 1 && "s"}</h3>
-                            <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                                 {pastEvents.map((event, index) => (
                                     <InviteCard key={index} event={event} />
                                 ))}

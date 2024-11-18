@@ -49,10 +49,10 @@ export default function InvitationResponse({ id }: Props) {
             },
             duration: Infinity,
         });
-    }
+    };
     useEffect(() => {
         if (!responded) {
-            callToast()
+            callToast();
         } else setResponded(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -86,7 +86,6 @@ export default function InvitationResponse({ id }: Props) {
                 id: "invitation-response",
             });
             callToast();
-
         }
         setRespond(false);
     }

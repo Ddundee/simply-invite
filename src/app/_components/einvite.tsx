@@ -81,19 +81,22 @@ export default function EInvite({
                                     </div>
                                 </div>
                             )}
-                            {guests?.map((guest) => guest.numGuests != 0 && (
-                                <div
-                                    className="space-y-2 rounded-lg border p-2"
-                                    key={guest.id}
-                                >
-                                    <div className="flex justify-between">
-                                        <h6>{guest.name}</h6>
-                                        <p className="text-green-500">
-                                            {guest.numGuests} guests
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
+                            {guests?.map(
+                                (guest) =>
+                                    guest.numGuests != 0 && (
+                                        <div
+                                            className="space-y-2 rounded-lg border p-2"
+                                            key={guest.id}
+                                        >
+                                            <div className="flex justify-between">
+                                                <h6>{guest.name}</h6>
+                                                <p className="text-green-500">
+                                                    {guest.numGuests} guests
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ),
+                            )}
                         </div>
                         <div className="flex w-full justify-end">
                             <Button variant="outline">See more</Button>
