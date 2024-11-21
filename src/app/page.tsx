@@ -221,9 +221,7 @@ export function Nav() {
                     <ArrowLeft />
                 </Button> */}
             </div>
-            <div className="block">
-                {" "}
-                {/* md:hidden  */}
+            <div className="block md:hidden">
                 <Sheet>
                     <SheetTrigger>
                         <HamburgerMenuIcon />
