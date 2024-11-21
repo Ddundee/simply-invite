@@ -37,11 +37,12 @@ export function Button({
     variant,
     ...props
 }: ButtonProps) {
-
-
     return (
         <button
-            className={cn(buttonVariants[variant ? variant : "primary"], className)}
+            className={cn(
+                buttonVariants[variant ? variant : "primary"],
+                className,
+            )}
             {...props}
         >
             {children}

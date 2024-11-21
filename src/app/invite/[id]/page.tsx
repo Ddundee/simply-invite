@@ -48,17 +48,17 @@ type DataProps = {
             response: "accepted" | "declined" | "pending";
         }[];
         event:
-        | {
-            id: number;
-            date: Date;
-            userId: string;
-            name: string;
-            hostName: string;
-            location: string;
-            note: string | null;
-            publicGuestList: boolean;
-        }
-        | undefined;
+            | {
+                  id: number;
+                  date: Date;
+                  userId: string;
+                  name: string;
+                  hostName: string;
+                  location: string;
+                  note: string | null;
+                  publicGuestList: boolean;
+              }
+            | undefined;
     }>;
 };
 
@@ -68,8 +68,5 @@ async function Data({ eventPromise }: DataProps) {
     if (!event) return <NotFound />;
     if (!guests) return <NotFound />;
 
-    return (
-        <EInvite event={event} guests={guests} />
-
-    );
+    return <EInvite event={event} guests={guests} />;
 }

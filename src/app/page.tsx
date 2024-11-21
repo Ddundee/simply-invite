@@ -11,11 +11,10 @@ import {
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from "~/components/ui/sheet"
+} from "~/components/ui/sheet";
 
 import { cn } from "~/lib/utils";
 import { Button, ButtonGroup } from "./_components/button";
@@ -63,7 +62,7 @@ export default function Page() {
                     <h2 className="text-center text-2xl font-medium">
                         People love us
                     </h2>
-                    <div className="flex flex-col md:flex-row items-center justify-center md:gap-12">
+                    <div className="flex flex-col items-center justify-center md:flex-row md:gap-12">
                         <div className="flex flex-col items-center gap-3">
                             <h3 className="text-5xl font-semibold text-blue">
                                 {0}
@@ -222,7 +221,9 @@ export function Nav() {
                     <ArrowLeft />
                 </Button> */}
             </div>
-            <div className="block"> {/* md:hidden  */}
+            <div className="block">
+                {" "}
+                {/* md:hidden  */}
                 <Sheet>
                     <SheetTrigger>
                         <HamburgerMenuIcon />
@@ -231,16 +232,42 @@ export function Nav() {
                         <SheetHeader>
                             <SheetTitle>Simply Invite</SheetTitle>
                         </SheetHeader>
-                        <div className="flex flex-col my-8 gap-3">
-                            <Link href={"/#how-it-works"} className={cn(buttonVariants({ variant: "ghost" }), "justify-start text-base")}>How it works</Link>
-                            <Link href={"/contact"} className={cn(buttonVariants({ variant: "ghost" }), "justify-start text-base")}>Contact Us</Link>
-                            <Link href={"/#faqs"} className={cn(buttonVariants({ variant: "ghost" }), "justify-start text-base")}>FAQs</Link>
-                            <div className="my-4 w-full [&>*]:w-full space-y-3 mx-3">
-                                <SignInButton><Button>Sign in</Button></SignInButton>
-                                <SignUpButton><Button>Sign up</Button></SignUpButton>
-
+                        <div className="my-8 flex flex-col gap-3">
+                            <Link
+                                href={"/#how-it-works"}
+                                className={cn(
+                                    buttonVariants({ variant: "ghost" }),
+                                    "justify-start text-base",
+                                )}
+                            >
+                                How it works
+                            </Link>
+                            <Link
+                                href={"/contact"}
+                                className={cn(
+                                    buttonVariants({ variant: "ghost" }),
+                                    "justify-start text-base",
+                                )}
+                            >
+                                Contact Us
+                            </Link>
+                            <Link
+                                href={"/#faqs"}
+                                className={cn(
+                                    buttonVariants({ variant: "ghost" }),
+                                    "justify-start text-base",
+                                )}
+                            >
+                                FAQs
+                            </Link>
+                            <div className="mx-3 my-4 w-full space-y-3 [&>*]:w-full">
+                                <SignInButton>
+                                    <Button>Sign in</Button>
+                                </SignInButton>
+                                <SignUpButton>
+                                    <Button>Sign up</Button>
+                                </SignUpButton>
                             </div>
-
                         </div>
                     </SheetContent>
                 </Sheet>
