@@ -18,9 +18,11 @@ export default async function Page({ params }: Props) {
     return (
         <>
             <InvitationResponse id={+id} />
-            <Suspense fallback={<Loading />}>
-                <Data eventPromise={eventPromise} />
-            </Suspense>
+            <div className="min-h-full">
+                <Suspense fallback={<Loading />}>
+                    <Data eventPromise={eventPromise} />
+                </Suspense>
+            </div>
         </>
     );
 }
@@ -46,17 +48,17 @@ type DataProps = {
             response: "accepted" | "declined" | "pending";
         }[];
         event:
-            | {
-                  id: number;
-                  date: Date;
-                  userId: string;
-                  name: string;
-                  hostName: string;
-                  location: string;
-                  note: string | null;
-                  publicGuestList: boolean;
-              }
-            | undefined;
+        | {
+            id: number;
+            date: Date;
+            userId: string;
+            name: string;
+            hostName: string;
+            location: string;
+            note: string | null;
+            publicGuestList: boolean;
+        }
+        | undefined;
     }>;
 };
 
@@ -67,10 +69,7 @@ async function Data({ eventPromise }: DataProps) {
     if (!guests) return <NotFound />;
 
     return (
-        <>
-            <div className="min-h-full">
-                <EInvite event={event} guests={guests} />
-            </div>
-        </>
+        <EInvite event={event} guests={guests} />
+
     );
 }

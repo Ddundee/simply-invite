@@ -77,7 +77,7 @@ export default function Page() {
                     publicGuestList: values[5],
                 }}
             />
-            <section className="min-h-full space-y-9 border-l p-6">
+            <section className="min-h-full space-y-9 p-6">
                 <h1 className="text-2xl">Let&apos;s create an event</h1>
                 <Form {...form}>
                     <form
@@ -134,7 +134,7 @@ export default function Page() {
                                                     className={cn(
                                                         "pl-3 text-left font-normal",
                                                         !field.value &&
-                                                            "text-muted-foreground",
+                                                        "text-muted-foreground",
                                                     )}
                                                 >
                                                     {field.value ? (

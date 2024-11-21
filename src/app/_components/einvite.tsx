@@ -31,7 +31,7 @@ export default function EInvite({
     guests,
 }: Props) {
     return (
-        <div className="flex-col gap-9 p-16 sm:flex md:grid-cols-2 lg:col-span-2">
+        <div className="flex-col gap-9 p-4 md:p-16 sm:flex md:grid-cols-2 lg:col-span-2">
             <Card
                 title={name ? name : ""}
                 className="space-y-4 [&>h4]:truncate [&>h4]:text-2xl"

@@ -20,7 +20,7 @@ export default async function Page({
     return (
         <div className="min-h-full md:grid md:grid-cols-2 lg:grid-cols-3">
             <EInvite event={event} guests={guests} />
-            <section className="min-h-full space-y-9 border-l p-6">
+            <section className="min-h-full space-y-9 p-6">
                 <h1 className="text-2xl">Copy the link and invite</h1>
                 <CopyableText />
             </section>
