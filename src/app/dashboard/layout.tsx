@@ -61,8 +61,18 @@ export default function Layout({
                     </NavigationMenu>
                     <SignedOut>
                         <ButtonGroup>
-                            <SignInButton>Sign in</SignInButton>
-                            <SignUpButton>Sign up</SignUpButton>
+                            <SignInButton
+                                signUpForceRedirectUrl={"/dashboard"}
+                                forceRedirectUrl={"/dashboard"}
+                            >
+                                Sign in
+                            </SignInButton>
+                            <SignUpButton
+                                signInFallbackRedirectUrl={"/dashboard"}
+                                fallbackRedirectUrl={"/dashboard"}
+                            >
+                                Sign up
+                            </SignUpButton>
                         </ButtonGroup>
                         <Link href={"/"}>
                             <Button>Go Home</Button>
