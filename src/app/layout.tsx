@@ -22,7 +22,7 @@ export default function RootLayout({
             <CSPostHogProvider>
                 <html
                     lang="en"
-                    className={`${swizter.className} scroll-smooth`}
+                    className={`${swizter.className} scroll-smooth selection:bg-blue/30`}
                 >
                     <body className="bg-primary-bg text-primary-text">
                         <Toaster />

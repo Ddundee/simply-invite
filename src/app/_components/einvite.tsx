@@ -1,6 +1,12 @@
 import { format } from "date-fns";
 import React from "react";
-
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "~/components/ui/sheet";
 import Card from "./card";
 import { Button } from "./button";
 import { Separator } from "~/components/ui/separator";
@@ -98,9 +104,47 @@ export default function EInvite({
                                     ),
                             )}
                         </div>
-                        <div className="flex w-full justify-end">
-                            <Button variant="outline">See more</Button>
-                        </div>
+                        {guests && guests.length >= 4 && (
+                            <div className="flex w-full justify-end">
+                                <Sheet>
+                                    <SheetTrigger asChild>
+                                        <Button variant="outline">
+                                            See more
+                                        </Button>
+                                    </SheetTrigger>
+                                    <SheetContent>
+                                        <SheetHeader>
+                                            <SheetTitle>
+                                                Who&apos;s coming
+                                            </SheetTitle>
+                                        </SheetHeader>
+                                        <div className="my-8 flex flex-col gap-3">
+                                            {guests?.map(
+                                                (guest) =>
+                                                    guest.numGuests != 0 && (
+                                                        <div
+                                                            className="space-y-2 rounded-lg border p-2"
+                                                            key={guest.id}
+                                                        >
+                                                            <div className="flex justify-between">
+                                                                <h6>
+                                                                    {guest.name}
+                                                                </h6>
+                                                                <p className="text-green-500">
+                                                                    {
+                                                                        guest.numGuests
+                                                                    }{" "}
+                                                                    guests
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    ),
+                                            )}
+                                        </div>
+                                    </SheetContent>
+                                </Sheet>
+                            </div>
+                        )}
                     </>
                 )}
             </Card>

@@ -16,7 +16,7 @@ export function ButtonGroup({ children }: { children: React.ReactNode[] }) {
     );
 }
 
-export const buttonVariants = {
+const buttonVariants = {
     primary:
         "cursor-pointer px-6 py-3 bg-blue text-primary-text gap-1 rounded-full flex items-center overflow-clip hover:bg-opacity-80 duration-100 justify-center",
     secondary:
