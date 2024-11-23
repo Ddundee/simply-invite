@@ -75,7 +75,7 @@ export default function Page() {
             <div className="space-y-9" id="how-it-works">
                 <h2 className="text-2xl font-medium">How it works</h2>
                 <div className="grid gap-6 lg:grid-cols-3">
-                    <Card>
+                    <Card className="bg-secondary hover:bg-background">
                         <CardHeader>
                             <CardTitle>
                                 1. Upload Your Invitation Design
@@ -89,7 +89,7 @@ export default function Page() {
                             </p>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="bg-secondary hover:bg-background">
                         <CardHeader>
                             <CardTitle>2. Share Your Invitation</CardTitle>
                         </CardHeader>
@@ -104,7 +104,7 @@ export default function Page() {
                             </p>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="bg-secondary hover:bg-background">
                         <CardHeader>
                             <CardTitle>3. Track and Manage Responses</CardTitle>
                         </CardHeader>

@@ -46,28 +46,30 @@ export default function Layout({ children }: LayoutProps) {
                                 <NavigationMenuTrigger className="text-sm font-medium">
                                     Resources
                                 </NavigationMenuTrigger>
-                                <NavigationMenuContent>
-                                    <ul className="w-fit p-3">
-                                        <NavigationMenuListItem href="/docs">
+                                <NavigationMenuContent className="bg-secondary">
+                                    <ul className="w-fit p-1.5">
+                                        <NavigationMenuListItem href="/#how-it-works">
                                             How It Works
                                         </NavigationMenuListItem>
-                                        <NavigationMenuListItem href="/docs/installation">
+                                        <NavigationMenuListItem href="/contact">
                                             Request Features
                                         </NavigationMenuListItem>
-                                        <NavigationMenuListItem href="/docs/primitives/typography">
+                                        <NavigationMenuListItem href="/#faqs">
                                             FAQs
                                         </NavigationMenuListItem>
                                     </ul>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
-                            <NavigationMenuItem
-                                className={cn(
-                                    buttonVariants({ variant: "ghost" }),
-                                    "text-sm font-medium",
-                                )}
-                            >
-                                Contact Us
-                            </NavigationMenuItem>
+                            <Link href="/contact">
+                                <NavigationMenuItem
+                                    className={cn(
+                                        buttonVariants({ variant: "ghost" }),
+                                        "text-sm font-medium",
+                                    )}
+                                >
+                                    Contact Us
+                                </NavigationMenuItem>
+                            </Link>
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
@@ -151,7 +153,7 @@ export default function Layout({ children }: LayoutProps) {
                     </Sheet>
                 </div>
             </nav>
-            <main className="mx-auto my-32 max-w-screen-xl space-y-32 p-4 px-32 lg:px-32">
+            <main className="mx-auto my-32 max-w-screen-xl space-y-32 p-4 md:px-32">
                 {children}
             </main>
             <footer className="w-full space-y-6 [&>*]:px-4 [&>*]:py-6 [&>*]:md:px-32">
@@ -195,10 +197,10 @@ export default function Layout({ children }: LayoutProps) {
                             <p>Support</p>
                             <ul className="space-y-3">
                                 <li className="text-secondary-foreground/60 hover:text-secondary-foreground/70">
-                                    <Link href="/contact-us">Contact Us</Link>
+                                    <Link href="/contact">Contact Us</Link>
                                 </li>
                                 <li className="text-secondary-foreground/60 hover:text-secondary-foreground/70">
-                                    <Link href="/contact-us">
+                                    <Link href="/contact">
                                         Request Features
                                     </Link>
                                 </li>
