@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
     Form,
@@ -23,13 +23,11 @@ import { format } from "date-fns";
 import { Calendar } from "~/components/calender";
 import { cn } from "~/lib/utils";
 import { Textarea } from "~/components/ui/textarea";
-import { Switch } from "~/app/_components/switch";
-import { Button } from "~/app/_components/button";
 import * as CNButton from "~/components/ui/button";
 import { toast } from "sonner";
 import handleCreateEvent from "~/actions/handleCreateEvent";
 import { useRouter } from "next/navigation";
-import EInvite from "~/app/_components/einvite";
+import { Switch } from "~/components/ui/switch";
 
 const formSchema = z.object({
     name: z.string().min(1).max(512),
@@ -53,21 +51,21 @@ export default function Page() {
             publicGuestList: false,
         },
     });
-    const values = useWatch({
-        control: form.control,
-        name: [
-            "name",
-            "date",
-            "location",
-            "hostName",
-            "note",
-            "publicGuestList",
-        ],
-    });
+    // const values = useWatch({
+    //     control: form.control,
+    //     name: [
+    //         "name",
+    //         "date",
+    //         "location",
+    //         "hostName",
+    //         "note",
+    //         "publicGuestList",
+    //     ],
+    // });
 
     return (
         <div className="min-h-full md:grid md:grid-cols-2 lg:grid-cols-3">
-            <EInvite
+            {/* <EInvite
                 event={{
                     date: values[1],
                     name: values[0],
@@ -76,7 +74,7 @@ export default function Page() {
                     note: values[4] ? values[4] : null,
                     publicGuestList: values[5],
                 }}
-            />
+            /> */}
             <section className="min-h-full space-y-9 p-6">
                 <h1 className="text-2xl">Let&apos;s create an event</h1>
                 <Form {...form}>
@@ -238,7 +236,7 @@ export default function Page() {
                             )}
                         />
                         <div className="w-full [&>*]:ml-auto">
-                            <Button type="submit">Generate Link</Button>
+                            {/* <Button type="submit">Generate Link</Button> */}
                         </div>
                     </form>
                 </Form>

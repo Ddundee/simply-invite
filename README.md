@@ -13,6 +13,7 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [x] Finish the code for the invitation page
 - [x] Add (public) layout.tsx
 - [x] Sheet for "See More" on Einvite component
+- [ ] Redesign the UI
 - [ ] Table list of the invites
 - [ ] Add a contribution page
 - [ ] Add a hamburger menu for dashboard nav and landing page nav
@@ -21,7 +22,6 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [ ] Add a way to send invites via email
 - [ ] Add a way to send invites via SMS
 - [ ] Figure out ~~the pricing or~~ how to make it free
-- [ ] Redesign the UI
 
 ## Tech Stack
 - Next.js (for frontend)
