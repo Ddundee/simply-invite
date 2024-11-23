@@ -67,11 +67,11 @@ next-route-announcer {
 @keyframes slide-fade-in {
   0% {
     opacity: 0;
-    transform: translateY(-10%);
+    /* transform: translateY(-10%); */
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    /* transform: translateX(0); */
   }
 }
 

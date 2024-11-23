@@ -12,13 +12,7 @@ import { cn } from "~/lib/utils";
 
 import React from "react";
 import { Button, buttonVariants } from "~/components/ui/button";
-import {
-    SignedIn,
-    SignedOut,
-    SignInButton,
-    SignUpButton,
-    UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import {
     Sheet,
     SheetContent,
@@ -77,35 +71,25 @@ export default function Layout({ children }: LayoutProps) {
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
-                <div className="hidden gap-3 md:flex">
+                <div className="hidden gap-3 fade-in md:flex">
                     <SignedOut>
                         <div className="isolate -space-x-px">
                             <SignInButton>
-                                <Button
-                                    variant="cool"
-                                    className="rounded-r-none focus:z-10"
-                                >
+                                <Button className="rounded-r-none focus:z-10">
                                     Sign In
                                 </Button>
                             </SignInButton>
                             <SignUpButton>
-                                <Button
-                                    variant="cool"
-                                    className="rounded-l-none focus:z-10"
-                                >
+                                <Button className="rounded-l-none focus:z-10">
                                     Sign Up
                                 </Button>
                             </SignUpButton>
                         </div>
                     </SignedOut>
                     <SignedIn>
-                        <Link
-                            href="/dashboard"
-                            className={buttonVariants({ variant: "cool" })}
-                        >
+                        <Link href="/dashboard" className={buttonVariants()}>
                             Dashboard
                         </Link>
-                        <UserButton showName />
                     </SignedIn>
                 </div>
                 <div className="flex md:hidden">
@@ -135,20 +119,14 @@ export default function Layout({ children }: LayoutProps) {
                                     <SignedOut>
                                         <li>
                                             <SignInButton>
-                                                <Button
-                                                    variant="cool"
-                                                    className="w-full"
-                                                >
+                                                <Button className="w-full">
                                                     Sign In
                                                 </Button>
                                             </SignInButton>
                                         </li>
                                         <li>
                                             <SignUpButton>
-                                                <Button
-                                                    variant="cool"
-                                                    className="w-full"
-                                                >
+                                                <Button className="w-full">
                                                     Sign Up
                                                 </Button>
                                             </SignUpButton>
@@ -156,13 +134,10 @@ export default function Layout({ children }: LayoutProps) {
                                     </SignedOut>
                                     <li className="flex w-full items-center gap-3">
                                         <SignedIn>
-                                            <UserButton />
                                             <Link
                                                 href="/dashboard"
                                                 className={cn(
-                                                    buttonVariants({
-                                                        variant: "cool",
-                                                    }),
+                                                    buttonVariants(),
                                                     "w-full",
                                                 )}
                                             >

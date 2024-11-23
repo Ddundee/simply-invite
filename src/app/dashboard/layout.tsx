@@ -1,4 +1,4 @@
-import { SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
+import { SignedOut, SignedIn } from "@clerk/nextjs";
 import Link from "next/link";
 import {
     NavigationMenu,
@@ -76,11 +76,6 @@ export default function Layout({
                         {/* <h2>
                             TODO: insert notif button  Insert TODO Button
                         </h2> */}
-                        <UserButton
-                            appearance={{
-                                elements: { userButtonAvatarBox: "w-10 h-10" },
-                            }}
-                        />
                     </SignedIn>
                 </div>
             </nav>
