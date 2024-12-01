@@ -32,7 +32,7 @@ type LayoutProps = Readonly<{
 export default function Layout({ children }: LayoutProps) {
     return (
         <>
-            <nav className="flex w-full justify-between border-b px-4 py-6 md:px-32">
+            <nav className="sticky top-0 flex w-full justify-between border-b bg-inherit bg-opacity-30 px-4 py-4 backdrop-blur-md md:px-32">
                 <div className="flex items-center gap-6">
                     <Link
                         href="/"
@@ -76,12 +76,18 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="hidden gap-3 fade-in md:flex">
                     <SignedOut>
                         <div className="isolate -space-x-px">
-                            <SignInButton>
+                            <SignInButton
+                                signUpForceRedirectUrl={"/dashboard"}
+                                forceRedirectUrl={"/dashboard"}
+                            >
                                 <Button className="rounded-r-none focus:z-10">
                                     Sign In
                                 </Button>
                             </SignInButton>
-                            <SignUpButton>
+                            <SignUpButton
+                                signInFallbackRedirectUrl={"/dashboard"}
+                                fallbackRedirectUrl={"/dashboard"}
+                            >
                                 <Button className="rounded-l-none focus:z-10">
                                     Sign Up
                                 </Button>
@@ -89,7 +95,12 @@ export default function Layout({ children }: LayoutProps) {
                         </div>
                     </SignedOut>
                     <SignedIn>
-                        <Link href="/dashboard" className={buttonVariants()}>
+                        <Link
+                            href="/dashboard"
+                            className={buttonVariants({
+                                className: "rounded-md",
+                            })}
+                        >
                             Dashboard
                         </Link>
                     </SignedIn>
@@ -120,14 +131,26 @@ export default function Layout({ children }: LayoutProps) {
                                     </SheetListItem>
                                     <SignedOut>
                                         <li>
-                                            <SignInButton>
+                                            <SignInButton
+                                                signUpForceRedirectUrl={
+                                                    "/dashboard"
+                                                }
+                                                forceRedirectUrl={"/dashboard"}
+                                            >
                                                 <Button className="w-full">
                                                     Sign In
                                                 </Button>
                                             </SignInButton>
                                         </li>
                                         <li>
-                                            <SignUpButton>
+                                            <SignUpButton
+                                                signInFallbackRedirectUrl={
+                                                    "/dashboard"
+                                                }
+                                                fallbackRedirectUrl={
+                                                    "/dashboard"
+                                                }
+                                            >
                                                 <Button className="w-full">
                                                     Sign Up
                                                 </Button>

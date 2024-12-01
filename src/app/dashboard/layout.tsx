@@ -1,4 +1,4 @@
-import { SignedOut, SignedIn } from "@clerk/nextjs";
+import { SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import {
     NavigationMenu,
@@ -15,7 +15,7 @@ export default function Layout({
     return (
         <div className="min-h-screen">
             <nav
-                className="border-outline flex items-center justify-between border-b py-6 [&>*]:mx-6"
+                className="border-outline sticky top-0 flex items-center justify-between border-b bg-background/30 py-2 backdrop-blur-md [&>*]:mx-6"
                 id="nav"
             >
                 {/* <div className="flex items-center justify-between gap-12"> */}
@@ -28,7 +28,7 @@ export default function Layout({
                 {/* </div> */}
                 <div className="flex gap-3">
                     <NavigationMenu className="">
-                        <NavigationMenuList className="flex gap-1">
+                        <NavigationMenuList className="flex items-center gap-1">
                             <NavigationMenuItem>
                                 <Link href="/contact" legacyBehavior passHref>
                                     <NavigationMenuLink
@@ -50,6 +50,9 @@ export default function Layout({
                                         Request features
                                     </NavigationMenuLink>
                                 </Link>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <UserButton />
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>

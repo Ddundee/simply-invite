@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import {
     Form,
@@ -23,11 +23,12 @@ import { format } from "date-fns";
 import { Calendar } from "~/components/calender";
 import { cn } from "~/lib/utils";
 import { Textarea } from "~/components/ui/textarea";
-import * as CNButton from "~/components/ui/button";
 import { toast } from "sonner";
 import handleCreateEvent from "~/actions/handleCreateEvent";
 import { useRouter } from "next/navigation";
 import { Switch } from "~/components/ui/switch";
+import EInviteDisplay from "~/app/_components/einvite-display";
+import { Button } from "~/components/ui/button";
 
 const formSchema = z.object({
     name: z.string().min(1).max(512),
@@ -51,21 +52,21 @@ export default function Page() {
             publicGuestList: false,
         },
     });
-    // const values = useWatch({
-    //     control: form.control,
-    //     name: [
-    //         "name",
-    //         "date",
-    //         "location",
-    //         "hostName",
-    //         "note",
-    //         "publicGuestList",
-    //     ],
-    // });
+    const values = useWatch({
+        control: form.control,
+        name: [
+            "name",
+            "date",
+            "location",
+            "hostName",
+            "note",
+            "publicGuestList",
+        ],
+    });
 
     return (
         <div className="min-h-full md:grid md:grid-cols-2 lg:grid-cols-3">
-            {/* <EInvite
+            <EInviteDisplay
                 event={{
                     date: values[1],
                     name: values[0],
@@ -74,7 +75,7 @@ export default function Page() {
                     note: values[4] ? values[4] : null,
                     publicGuestList: values[5],
                 }}
-            /> */}
+            />
             <section className="min-h-full space-y-9 p-6">
                 <h1 className="text-2xl">Let&apos;s create an event</h1>
                 <Form {...form}>
@@ -127,7 +128,7 @@ export default function Page() {
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <FormControl>
-                                                <CNButton.Button
+                                                <Button
                                                     variant={"outline"}
                                                     className={cn(
                                                         "pl-3 text-left font-normal",
@@ -144,7 +145,7 @@ export default function Page() {
                                                         <span>Pick a date</span>
                                                     )}
                                                     <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                                </CNButton.Button>
+                                                </Button>
                                             </FormControl>
                                         </PopoverTrigger>
                                         <PopoverContent
@@ -235,8 +236,8 @@ export default function Page() {
                                 </FormItem>
                             )}
                         />
-                        <div className="w-full [&>*]:ml-auto">
-                            {/* <Button type="submit">Generate Link</Button> */}
+                        <div className="w-full">
+                            <Button type="submit">Generate Link</Button>
                         </div>
                     </form>
                 </Form>
