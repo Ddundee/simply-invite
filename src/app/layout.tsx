@@ -1,7 +1,7 @@
 import "~/styles/globals.css";
 import localFont from "next/font/local";
 import { type Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs/";
 import { CSPostHogProvider } from "./providers";
 import { Toaster } from "~/components/ui/sonner";
 
@@ -18,7 +18,7 @@ export default function RootLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <ClerkProvider>
+        <ClerkProvider dynamic>
             <CSPostHogProvider>
                 <html
                     lang="en"

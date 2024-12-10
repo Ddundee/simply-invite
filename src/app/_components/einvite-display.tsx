@@ -180,16 +180,16 @@ export function EInviteDisplayFallback() {
         <div className="flex-col gap-9 p-4 sm:flex md:grid-cols-2 md:p-16 lg:col-span-2">
             <Skeleton className="bg-muted/55">
                 <div className="w-full p-6">
-                    <Skeleton className="h-4 w-72 border" />
-                    <Skeleton className="mt-2 h-5 w-24 border" />
+                    <Skeleton className="h-4 w-72" />
+                    <Skeleton className="mt-2 h-5 w-24" />
                 </div>
                 <div className="mt-4 px-6 pb-6">
-                    <Skeleton className="h-24 w-48 border" />
+                    <Skeleton className="h-24 w-48" />
                 </div>
                 <div className="mt-4 px-6 pb-6">
-                    <Skeleton className="h-6 w-24 border" />
+                    <Skeleton className="h-6 w-24" />
                     <div className="mt-2 grid grid-cols-1 gap-4 lg:grid-cols-2">
-                        <Skeleton className="h-8 space-y-2 rounded-lg border" />
+                        <Skeleton className="h-8 space-y-2 rounded-lg" />
                     </div>
                 </div>
             </Skeleton>

@@ -1,5 +1,5 @@
-import { auth } from "@clerk/nextjs/server";
 import "server-only";
+import { auth } from "@clerk/nextjs/server";
 import { db } from ".";
 import posthog from "posthog-js";
 import { event, guest } from "./schema";

@@ -83,7 +83,7 @@ export default function Page() {
 
     return (
         <main className="mx-16 my-6 space-y-3">
-            <div className="flex w-full gap-3">
+            <div className="grid w-full gap-3 md:grid-cols-2">
                 <Input
                     placeholder="Search your events"
                     className="h-13 flex-grow"
@@ -101,59 +101,60 @@ export default function Page() {
                         });
                     }}
                 />
-
-                <Select
-                    onValueChange={(value) => {
-                        setSortValue(value);
-                        setFetchedEvents({
-                            ...fetchedEvents,
-                            filterdEvents: fetchedEvents.filterdEvents.sort(
-                                (a, b) => {
-                                    if (value === "Sort alphabetically") {
-                                        return a.name.localeCompare(b.name);
-                                    }
-                                    return (
-                                        new Date(a.date).getTime() -
-                                        new Date(b.date).getTime()
-                                    );
-                                },
-                            ),
-                        });
-                    }}
-                    value={sortValue}
-                >
-                    <SelectTrigger className="h-13">
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        {possibleSortSelections.map((value, index) => (
-                            <SelectItem key={index} value={value}>
-                                {value}
-                            </SelectItem>
+                <div className="flex w-full flex-grow gap-3">
+                    <Select
+                        onValueChange={(value) => {
+                            setSortValue(value);
+                            setFetchedEvents({
+                                ...fetchedEvents,
+                                filterdEvents: fetchedEvents.filterdEvents.sort(
+                                    (a, b) => {
+                                        if (value === "Sort alphabetically") {
+                                            return a.name.localeCompare(b.name);
+                                        }
+                                        return (
+                                            new Date(a.date).getTime() -
+                                            new Date(b.date).getTime()
+                                        );
+                                    },
+                                ),
+                            });
+                        }}
+                        value={sortValue}
+                    >
+                        <SelectTrigger>
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {possibleSortSelections.map((value, index) => (
+                                <SelectItem key={index} value={value}>
+                                    {value}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                    <ToggleGroup
+                        type="single"
+                        className="gap-0 overflow-clip rounded-md border"
+                        value={listValue}
+                        onValueChange={(value) => setListValue(value)}
+                    >
+                        {possibleListToggles.map((item, index) => (
+                            <ToggleGroupItem
+                                className="h-full"
+                                key={index}
+                                value={item.value}
+                            >
+                                {item.label}
+                            </ToggleGroupItem>
                         ))}
-                    </SelectContent>
-                </Select>
-                <ToggleGroup
-                    type="single"
-                    className="gap-0 overflow-clip rounded-md border"
-                    value={listValue}
-                    onValueChange={(value) => setListValue(value)}
-                >
-                    {possibleListToggles.map((item, index) => (
-                        <ToggleGroupItem
-                            className="h-full"
-                            key={index}
-                            value={item.value}
-                        >
-                            {item.label}
-                        </ToggleGroupItem>
-                    ))}
-                </ToggleGroup>
-                <Link href="/dashboard/events/new" className="">
-                    <Button variant="outline" className="text-nowrap">
-                        Create event
-                    </Button>
-                </Link>
+                    </ToggleGroup>
+                    <Link href="/dashboard/events/new" className="">
+                        <Button variant="outline" className="text-nowrap">
+                            Create event
+                        </Button>
+                    </Link>
+                </div>
             </div>
             {fetched ? (
                 <>
