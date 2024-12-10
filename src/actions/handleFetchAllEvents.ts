@@ -1,5 +1,4 @@
 "use server";
-
 import { getAllEvents } from "~/server/db/queries";
 
 export default async function handleFetchAllEvents() {

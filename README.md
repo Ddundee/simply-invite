@@ -1,5 +1,4 @@
 # Simply Invite
-
 InviteLink is a event invitation app where users can upload their own invitation designs, generate a shareable link, and choose to send invitations via email or SMS (Email/SMS is still a work in progress 😭).
 
 ## TODO
@@ -13,7 +12,7 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [x] Finish the code for the invitation page
 - [x] Add (public) layout.tsx
 - [x] Sheet for "See More" on Einvite component
-- [ ] Redesign the UI
+- [x] Redesign the UI
 - [ ] Table list of the invites
 - [ ] Add a way to edit invites
 - [ ] Add a contribution page
@@ -21,8 +20,8 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [ ] Ability to delete invites
 - [ ] Add a way to upload images
 - [ ] Add a way to send invites via email
-- [ ] Add a way to send invites via SMS
 - [ ] Figure out ~~the pricing or~~ how to make it free
+- [ ] Add a way to send invites via SMS
 
 ## Tech Stack
 - Next.js (for frontend)

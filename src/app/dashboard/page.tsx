@@ -198,32 +198,38 @@ export default function Page() {
                     )}
                 </>
             ) : (
-                <>
-                    <div className="space-y-3">
-                        <Skeleton className="h-6 w-24 rounded-md" />
-                        <div className="grid w-full grid-cols-4 gap-3">
-                            <Skeleton className="h-40 w-full rounded-md" />
-                            <Skeleton className="h-40 w-full rounded-md" />
-                            <Skeleton className="h-40 w-full rounded-md" />
-                            <Skeleton className="h-40 w-full rounded-md" />
-                        </div>
-                    </div>
-                    <div className="space-y-3">
-                        <Skeleton className="h-6 w-24 rounded-md" />
-                        <div className="grid w-full grid-cols-4 gap-3">
-                            <Skeleton className="h-40 w-full rounded-md" />
-                            <Skeleton className="h-40 w-full rounded-md" />
-                            <Skeleton className="h-40 w-full rounded-md" />
-                        </div>
-                    </div>
-                    <div className="space-y-3">
-                        <Skeleton className="h-6 w-24 rounded-md" />
-                        <div className="grid w-full grid-cols-4 gap-3">
-                            <Skeleton className="h-40 w-full rounded-md" />
-                        </div>
-                    </div>
-                </>
+                <Loading />
             )}
         </main>
+    );
+}
+
+function Loading() {
+    return (
+        <>
+            <div className="space-y-3">
+                <Skeleton className="h-6 w-24 rounded-md" />
+                <div className="grid w-full grid-cols-4 gap-3">
+                    <Skeleton className="h-40 w-full rounded-md" />
+                    <Skeleton className="h-40 w-full rounded-md" />
+                    <Skeleton className="h-40 w-full rounded-md" />
+                    <Skeleton className="h-40 w-full rounded-md" />
+                </div>
+            </div>
+            <div className="space-y-3">
+                <Skeleton className="h-6 w-24 rounded-md" />
+                <div className="grid w-full grid-cols-4 gap-3">
+                    <Skeleton className="h-40 w-full rounded-md" />
+                    <Skeleton className="h-40 w-full rounded-md" />
+                    <Skeleton className="h-40 w-full rounded-md" />
+                </div>
+            </div>
+            <div className="space-y-3">
+                <Skeleton className="h-6 w-24 rounded-md" />
+                <div className="grid w-full grid-cols-4 gap-3">
+                    <Skeleton className="h-40 w-full rounded-md" />
+                </div>
+            </div>
+        </>
     );
 }

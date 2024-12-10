@@ -10,6 +10,7 @@ import {
     AccordionTrigger,
     AccordionContent,
 } from "~/components/ui/accordion";
+import PrefetchDashboard from "../_components/prefetch-dashboard";
 
 export default function Page() {
     const faqs = [
@@ -37,6 +38,7 @@ export default function Page() {
 
     return (
         <>
+            <PrefetchDashboard />
             <div
                 className="flex flex-col items-center justify-center space-y-9"
                 id="hero"
