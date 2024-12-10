@@ -126,8 +126,8 @@ export default function Page() {
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                            {possibleSortSelections.map((value, index) => (
-                                <SelectItem key={index} value={value}>
+                            {possibleSortSelections.map((value) => (
+                                <SelectItem key={value} value={value}>
                                     {value}
                                 </SelectItem>
                             ))}
@@ -139,10 +139,10 @@ export default function Page() {
                         value={listValue}
                         onValueChange={(value) => setListValue(value)}
                     >
-                        {possibleListToggles.map((item, index) => (
+                        {possibleListToggles.map((item) => (
                             <ToggleGroupItem
                                 className="h-full"
-                                key={index}
+                                key={item.value}
                                 value={item.value}
                             >
                                 {item.label}
@@ -168,8 +168,8 @@ export default function Page() {
                                 </h3>
                             </div>
                             <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                                {currentEvents.map((event, index) => (
-                                    <EInviteCard key={index} event={event} />
+                                {currentEvents.map((event) => (
+                                    <EInviteCard key={event.id} event={event} />
                                 ))}
                             </div>
                         </div>
@@ -180,8 +180,8 @@ export default function Page() {
                                 Upcoming event{upcomingEvents.length > 1 && "s"}
                             </h3>
                             <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                                {upcomingEvents.map((event, index) => (
-                                    <EInviteCard key={index} event={event} />
+                                {upcomingEvents.map((event) => (
+                                    <EInviteCard key={event.id} event={event} />
                                 ))}
                             </div>
                         </div>
@@ -190,8 +190,8 @@ export default function Page() {
                         <div className="space-y-3">
                             <h3>Past event{pastEvents.length > 1 && "s"}</h3>
                             <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                                {pastEvents.map((event, index) => (
-                                    <EInviteCard key={index} event={event} />
+                                {pastEvents.map((event) => (
+                                    <EInviteCard key={event.id} event={event} />
                                 ))}
                             </div>
                         </div>
