@@ -1,8 +1,7 @@
 "use server";
 
 import type { z } from "zod";
-import type { contactFormSchema } from "~/app/_components/contactForm";
-
+import { type contactFormSchema } from "~/util/schema/contac-form-schema";
 interface DiscordEmbed {
     title: string;
     color: number;

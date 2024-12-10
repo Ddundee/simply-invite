@@ -1,12 +1,5 @@
-import {
-    SignedOut,
-    SignInButton,
-    SignUpButton,
-    SignedIn,
-    UserButton,
-} from "@clerk/nextjs";
+import { SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { ButtonGroup, Button } from "../_components/button";
 import {
     NavigationMenu,
     NavigationMenuList,
@@ -14,6 +7,7 @@ import {
     NavigationMenuLink,
 } from "@radix-ui/react-navigation-menu";
 import { cn } from "~/lib/utils";
+import { Button } from "~/components/ui/button";
 
 export default function Layout({
     children,
@@ -21,25 +15,25 @@ export default function Layout({
     return (
         <div className="min-h-screen">
             <nav
-                className="flex items-center justify-between border-b border-outline py-6 [&>*]:mx-6"
+                className="border-outline sticky top-0 flex items-center justify-between border-b bg-background/30 py-2 backdrop-blur-md [&>*]:mx-6"
                 id="nav"
             >
                 {/* <div className="flex items-center justify-between gap-12"> */}
                 <Link
                     href={"/dashboard"}
-                    className="text-lg font-semibold text-blue"
+                    className="text-blue text-lg font-semibold"
                 >
                     Dashboard
                 </Link>
                 {/* </div> */}
                 <div className="flex gap-3">
                     <NavigationMenu className="">
-                        <NavigationMenuList className="flex gap-1">
+                        <NavigationMenuList className="flex items-center gap-1">
                             <NavigationMenuItem>
                                 <Link href="/contact" legacyBehavior passHref>
                                     <NavigationMenuLink
                                         className={cn(
-                                            "block rounded-md p-3 text-sm leading-none text-secondary-text no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                                            "block rounded-md p-3 text-sm leading-none text-secondary-foreground no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
                                         )}
                                     >
                                         Feedback
@@ -50,17 +44,20 @@ export default function Layout({
                                 <Link href="/contact" legacyBehavior passHref>
                                     <NavigationMenuLink
                                         className={cn(
-                                            "block rounded-md p-3 text-sm leading-none text-secondary-text no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                                            "block rounded-md p-3 text-sm leading-none text-secondary-foreground no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
                                         )}
                                     >
                                         Request features
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <UserButton />
+                            </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
                     <SignedOut>
-                        <ButtonGroup>
+                        {/* <ButtonGroup>
                             <SignInButton
                                 signUpForceRedirectUrl={"/dashboard"}
                                 forceRedirectUrl={"/dashboard"}
@@ -73,7 +70,7 @@ export default function Layout({
                             >
                                 Sign up
                             </SignUpButton>
-                        </ButtonGroup>
+                        </ButtonGroup> */}
                         <Link href={"/"}>
                             <Button>Go Home</Button>
                         </Link>
@@ -82,11 +79,6 @@ export default function Layout({
                         {/* <h2>
                             TODO: insert notif button  Insert TODO Button
                         </h2> */}
-                        <UserButton
-                            appearance={{
-                                elements: { userButtonAvatarBox: "w-10 h-10" },
-                            }}
-                        />
                     </SignedIn>
                 </div>
             </nav>

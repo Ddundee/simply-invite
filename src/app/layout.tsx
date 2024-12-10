@@ -18,13 +18,13 @@ export default function RootLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <ClerkProvider>
+        <ClerkProvider dynamic>
             <CSPostHogProvider>
                 <html
                     lang="en"
-                    className={`${swizter.className} scroll-smooth selection:bg-blue/30`}
+                    className={`${swizter.className} scroll-smooth bg-primary selection:bg-primary/30`}
                 >
-                    <body className="bg-primary-bg text-primary-text">
+                    <body className="foreground border-y-[-4px] border-primary bg-secondary text-foreground">
                         <Toaster />
                         {children}
                     </body>
