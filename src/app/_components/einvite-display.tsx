@@ -17,6 +17,7 @@ import {
 } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
+import { Skeleton } from "~/components/ui/skeleton";
 
 type Props = {
     event: {
@@ -170,6 +171,28 @@ export default function EInviteDisplay({
                     </CardFooter>
                 )}
             </Card>
+        </div>
+    );
+}
+
+export function EInviteDisplayFallback() {
+    return (
+        <div className="flex-col gap-9 p-4 sm:flex md:grid-cols-2 md:p-16 lg:col-span-2">
+            <Skeleton className="bg-muted/55">
+                <div className="w-full p-6">
+                    <Skeleton className="h-4 w-72 border" />
+                    <Skeleton className="mt-2 h-5 w-24 border" />
+                </div>
+                <div className="mt-4 px-6 pb-6">
+                    <Skeleton className="h-24 w-48 border" />
+                </div>
+                <div className="mt-4 px-6 pb-6">
+                    <Skeleton className="h-6 w-24 border" />
+                    <div className="mt-2 grid grid-cols-1 gap-4 lg:grid-cols-2">
+                        <Skeleton className="h-8 space-y-2 rounded-lg border" />
+                    </div>
+                </div>
+            </Skeleton>
         </div>
     );
 }

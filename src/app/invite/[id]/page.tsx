@@ -1,9 +1,10 @@
 import Link from "next/link";
-import React, { Suspense } from "react";
+import React, { Suspense, use } from "react";
 import { getEventById } from "~/server/db/queries";
-import Loading from "./loading";
 import { Button } from "~/components/ui/button";
-import EInviteDisplay from "~/app/_components/einvite-display";
+import EInviteDisplay, {
+    EInviteDisplayFallback,
+} from "~/app/_components/einvite-display";
 import InvitationResponse from "~/app/_components/invitation-response";
 type Props = {
     params: Promise<{ id: string }>;
@@ -14,17 +15,14 @@ function isNumeric(value: string): boolean {
 }
 
 export default async function Page({ params }: Props) {
-    const { id } = await params;
-    if (!isNumeric(id)) return <NotFound />;
-
-    const eventPromise = getEventById(+id);
-
     return (
         <>
-            <InvitationResponse id={+id} />
+            <Suspense>
+                <InvitationResponseData params={params} />
+            </Suspense>
             <div className="min-h-screen">
-                <Suspense fallback={<Loading />}>
-                    <Data eventPromise={eventPromise} />
+                <Suspense fallback={<EInviteDisplayFallback />}>
+                    <EInviteDisplayData params={params} />
                 </Suspense>
             </div>
         </>
@@ -42,35 +40,21 @@ function NotFound() {
     );
 }
 
-type DataProps = {
-    eventPromise: Promise<{
-        guests: {
-            id: number;
-            name: string;
-            eventId: number;
-            numGuests: number;
-            response: "accepted" | "declined" | "pending";
-        }[];
-        event:
-            | {
-                  id: number;
-                  date: Date;
-                  userId: string;
-                  name: string;
-                  hostName: string;
-                  location: string;
-                  note: string | null;
-                  publicGuestList: boolean;
-              }
-            | undefined;
-    }>;
-};
+function EInviteDisplayData({ params }: Props) {
+    const { id } = use(params);
+    if (!isNumeric(id)) return <NotFound />;
 
-async function Data({ eventPromise }: DataProps) {
-    const { event, guests } = await eventPromise;
+    const { event, guests } = use(getEventById(+id));
 
     if (!event) return <NotFound />;
     if (!guests) return <NotFound />;
 
     return <EInviteDisplay event={event} guests={guests} />;
+}
+
+function InvitationResponseData({ params }: Props) {
+    const { id } = use(params);
+    if (!isNumeric(id)) return <NotFound />;
+
+    return <InvitationResponse id={+id} />;
 }

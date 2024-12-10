@@ -1,6 +1,8 @@
 import Link from "next/link";
-import React, { Suspense } from "react";
-import EInviteDisplay from "~/app/_components/einvite-display";
+import React, { Suspense, use } from "react";
+import EInviteDisplay, {
+    EInviteDisplayFallback,
+} from "~/app/_components/einvite-display";
 import LinkToInvite from "~/app/_components/link-to-invite";
 import { Button } from "~/components/ui/button";
 import { getEventById } from "~/server/db/queries";
@@ -10,21 +12,10 @@ export default async function Page({
 }: {
     params: Promise<{ id: string }>;
 }) {
-    const { id } = await params;
-    if (!Number.isInteger(+id)) return <NotFound />;
-
-    const { event, guests } = await getEventById(+id);
-    if (!event) return <NotFound />;
-    if (!guests) return <NotFound />;
-
     return (
         <div className="min-h-full md:grid md:grid-cols-2 lg:grid-cols-3">
-            <Suspense>
-                <EInviteDisplay
-                    event={event}
-                    guests={guests}
-                    className="fade-in"
-                />
+            <Suspense fallback={<EInviteDisplayFallback />}>
+                <Data param={params} />
             </Suspense>
 
             <section className="min-h-full space-y-9 p-6">
@@ -46,4 +37,14 @@ function NotFound() {
             </Link>
         </div>
     );
+}
+
+function Data({ param }: { param: Promise<{ id: string }> }) {
+    const { id } = use(param);
+    if (!Number.isInteger(+id)) return <NotFound />;
+
+    const { event, guests } = use(getEventById(+id));
+    if (!event) return <NotFound />;
+    if (!guests) return <NotFound />;
+    return <EInviteDisplay event={event} guests={guests} className="fade-in" />;
 }
