@@ -131,9 +131,9 @@ export default function Page() {
                                         </FormControl>
                                         <SelectContent>
                                             {contactFormSchema.shape.type._def.values.map(
-                                                (value, index) => (
+                                                (value) => (
                                                     <SelectItem
-                                                        key={index}
+                                                        key={value}
                                                         value={value}
                                                     >
                                                         {value}
