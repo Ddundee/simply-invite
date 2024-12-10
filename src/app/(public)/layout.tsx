@@ -32,7 +32,7 @@ type LayoutProps = Readonly<{
 export default function Layout({ children }: LayoutProps) {
     return (
         <>
-            <nav className="sticky top-0 flex w-full justify-between border-b bg-inherit bg-opacity-30 px-4 py-4 backdrop-blur-md md:px-32">
+            <nav className="bg-inherit/90 sticky top-0 flex w-full justify-between border-b px-4 py-4 backdrop-blur-2xl md:px-32">
                 <div className="flex items-center gap-6">
                     <Link
                         href="/"

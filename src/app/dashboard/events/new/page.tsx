@@ -89,7 +89,6 @@ export default function Page() {
                                 toast.success("Event created!", {
                                     id: "create-event",
                                 });
-                                console.log(id);
                                 void router.push(
                                     `/dashboard/events/${id[0]?.id}`,
                                 );

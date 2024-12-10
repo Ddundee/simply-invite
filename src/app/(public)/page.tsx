@@ -41,41 +41,43 @@ export default function Page() {
                 className="flex flex-col items-center justify-center space-y-9"
                 id="hero"
             >
-                <div className="items-center justify-center space-y-3">
-                    <h1 className="text-center text-4xl font-bold leading-tight md:text-5xl md:leading-tight">
+                <div className="flex flex-col items-center justify-center gap-3">
+                    <h1 className="bg-gradient-to-r from-primary to-[#1811d7]/70 bg-clip-text text-center text-4xl font-bold leading-tight text-transparent md:text-5xl md:leading-tight">
                         Your design, our delivery.
                         <br /> Invites made simple.
                     </h1>
-                    <p className="text-secondary-text max-w-lg text-center leading-normal">
+                    <p className="text-secondary-text w-fit max-w-lg text-center leading-normal">
                         An easy, dirt cheap way to share your event invitations.
                         Upload your custom design, get a shareable link. And
                         then party time 🥳.
                     </p>
                 </div>
-                <SignedOut>
-                    <SignUpButton
-                        signInFallbackRedirectUrl={"/dashboard"}
-                        fallbackRedirectUrl={"/dashboard"}
-                    >
-                        <Button className="fade-in">
+                <div className="flex gap-3">
+                    <SignedOut>
+                        <SignUpButton
+                            signInFallbackRedirectUrl={"/dashboard"}
+                            fallbackRedirectUrl={"/dashboard"}
+                        >
+                            <Button className="flex gap-3 fade-in">
+                                <span>Invite Now hasd</span> <ArrowRightIcon />
+                            </Button>
+                        </SignUpButton>
+                    </SignedOut>
+                    <SignedIn>
+                        <Link
+                            href="/dashboard/events/new"
+                            className={cn(buttonVariants(), "fade-in")}
+                            passHref
+                        >
                             Invite Now <ArrowRightIcon />
-                        </Button>
-                    </SignUpButton>
-                </SignedOut>
-                <SignedIn>
-                    <Link
-                        href="/dashboard/events/new"
-                        className={cn(buttonVariants(), "fade-in")}
-                        passHref
-                    >
-                        Invite Now <ArrowRightIcon />
-                    </Link>
-                </SignedIn>
+                        </Link>
+                    </SignedIn>
+                </div>
             </div>
             <div className="space-y-9" id="how-it-works">
                 <h2 className="text-2xl font-medium">How it works</h2>
                 <div className="grid gap-6 lg:grid-cols-3">
-                    <Card className="bg-secondary hover:border-foreground hover:bg-background">
+                    <Card className="bg-secondary">
                         <CardHeader>
                             <CardTitle>
                                 1. Upload Your Invitation Design
@@ -89,7 +91,7 @@ export default function Page() {
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-secondary hover:border-foreground hover:bg-background">
+                    <Card className="bg-secondary">
                         <CardHeader>
                             <CardTitle>2. Share Your Invitation</CardTitle>
                         </CardHeader>
@@ -104,7 +106,7 @@ export default function Page() {
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="bg-secondary hover:border-foreground hover:bg-background">
+                    <Card className="bg-secondary">
                         <CardHeader>
                             <CardTitle>3. Track and Manage Responses</CardTitle>
                         </CardHeader>

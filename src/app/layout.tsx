@@ -24,7 +24,7 @@ export default function RootLayout({
                     lang="en"
                     className={`${swizter.className} scroll-smooth bg-primary selection:bg-primary/30`}
                 >
-                    <body className="foreground border-y-[-4px] border-primary bg-secondary text-foreground duration-0">
+                    <body className="foreground border-y-[-4px] border-primary bg-secondary text-foreground">
                         <Toaster />
                         {children}
                     </body>

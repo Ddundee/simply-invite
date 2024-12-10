@@ -6,7 +6,7 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [x] Design the basic layout in Figma
 - [x] Finish the code for home page
 - [x] Finish the code for contact page
-- [x] Add Clerk, Posthog, Sentry, and Drizzle integrations
+- [x] Add Clerk, Posthog, and Drizzle integrations
 - [x] Make the schema for the database
 - [x] Finish the code for the create invite page
 - [x] Finish the code for the dashboard page
@@ -27,7 +27,7 @@ InviteLink is a event invitation app where users can upload their own invitation
 ## Tech Stack
 - Next.js (for frontend)
 - Clerk (for auth)
-- Posthog & Sentry (for analytics)
+- Posthog (for analytics)
 - Drizzle (for orm)
 - Supabase (for db)
 - Vercel (for hosting)

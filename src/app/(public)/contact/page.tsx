@@ -2,7 +2,7 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { type z } from "zod";
 import {
     Form,
     FormControl,
@@ -22,23 +22,8 @@ import {
 import { Textarea } from "~/components/ui/textarea";
 import handleContactFormSubmit from "~/actions/handleContactFormSubmit";
 import { toast } from "sonner";
-import { captureException } from "@sentry/nextjs";
 import { Button } from "~/components/ui/button";
-
-export const contactFormSchema = z.object({
-    firstName: z.string().min(1).max(64),
-    lastName: z.string().min(1).max(64),
-    email: z.string().email(),
-    type: z.enum([
-        "Select an option",
-        "Support",
-        "Request Feature",
-        "Report Bug",
-        "Sales",
-        "Other",
-    ]),
-    message: z.string().max(512).optional(),
-});
+import { contactFormSchema } from "~/util/schema/contac-form-schema";
 
 export default function Page() {
     const form = useForm<z.infer<typeof contactFormSchema>>({
@@ -75,8 +60,7 @@ export default function Page() {
                                     id: "contact-form",
                                 });
                             })
-                            .catch((error) => {
-                                captureException(error);
+                            .catch(() => {
                                 toast.error(
                                     "Failed to send message! 😭 Please try again later.",
                                     { id: "contact-form" },

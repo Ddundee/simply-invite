@@ -16,7 +16,7 @@ export default async function handleCreateGuest({
     return addGuest({
         eventId: id,
         name: name ?? "",
-        numGuests: numGuests ?? 0,
+        numGuests: numGuests ? numGuests : 0,
         response: coming ? "accepted" : "declined",
     }).catch(() => {
         throw new Error("Failed to create event");
