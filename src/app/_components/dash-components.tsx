@@ -115,8 +115,6 @@ function Data({
     }, [data, makeList]);
 
     const alteredList = useDashboardStore((state) => state.alteredList);
-    console.log("DATA", data);
-    console.log("ALTERED LIST", alteredList);
     const currentDate = useRef(new Date()).current;
     const currentEvents = alteredList.filter((event) => {
         const eventDate = new Date(event.date);

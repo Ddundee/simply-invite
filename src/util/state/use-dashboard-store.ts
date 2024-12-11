@@ -74,9 +74,7 @@ const useDashboardStore = create<DashboardState>()((set, get) => ({
             ...state,
             list,
         }));
-        console.log("STATE LIST", get().list);
         get().alterList({ sort: "alphabetically" });
-        console.log("STATE ALTERED LIST", get().alteredList);
     },
 }));
 
