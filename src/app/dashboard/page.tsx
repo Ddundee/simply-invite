@@ -13,7 +13,7 @@ export default function Page() {
                 <div className="flex w-full flex-grow gap-3">
                     <SortInput />
                     {/* <DisplayType /> */}
-                    <Link href="/dashboard/events/new" className="">
+                    <Link href="/dashboard/events/new">
                         <Button variant="outline" className="text-nowrap">
                             Create event
                         </Button>
@@ -37,7 +37,7 @@ function Loading() {
         <>
             <div className="space-y-3">
                 <Skeleton className="h-6 w-24 rounded-md" />
-                <div className="grid w-full grid-cols-4 gap-3">
+                <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <Skeleton className="h-40 w-full rounded-md" />
                     <Skeleton className="h-40 w-full rounded-md" />
                     <Skeleton className="h-40 w-full rounded-md" />
@@ -46,7 +46,7 @@ function Loading() {
             </div>
             <div className="space-y-3">
                 <Skeleton className="h-6 w-24 rounded-md" />
-                <div className="grid w-full grid-cols-4 gap-3">
+                <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <Skeleton className="h-40 w-full rounded-md" />
                     <Skeleton className="h-40 w-full rounded-md" />
                     <Skeleton className="h-40 w-full rounded-md" />
@@ -54,7 +54,7 @@ function Loading() {
             </div>
             <div className="space-y-3">
                 <Skeleton className="h-6 w-24 rounded-md" />
-                <div className="grid w-full grid-cols-4 gap-3">
+                <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <Skeleton className="h-40 w-full rounded-md" />
                 </div>
             </div>

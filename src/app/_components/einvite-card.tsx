@@ -3,6 +3,7 @@ import { formatDistanceToNow } from "date-fns";
 import { CalendarIcon, PersonIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { ArrowRightIcon } from "lucide-react";
 
 type Props = {
     event: {
@@ -20,10 +21,20 @@ type Props = {
 
 export default function EInviteCard({ event }: Props) {
     return (
-        <Link href={`/dashboard/events/${event.id}`}>
-            <Card className="cursor-pointer duration-100 hover:bg-opacity-5">
-                <CardHeader>
-                    <CardTitle>{event.name}</CardTitle>
+        <Link
+            href={`/dashboard/events/${event.id}`}
+            className="group duration-100"
+        >
+            <Card className="cursor-pointer duration-100 group-hover:border-black">
+                <CardHeader className="duration-100 group-hover:pr-5">
+                    <div className="item flex w-full justify-between">
+                        <CardTitle>{event.name}</CardTitle>
+                        <ArrowRightIcon
+                            strokeWidth={"1.25px"}
+                            height={"18px"}
+                            className="stroke-gray-500 group-hover:stroke-black"
+                        />
+                    </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
                     <div className="space-y-1">

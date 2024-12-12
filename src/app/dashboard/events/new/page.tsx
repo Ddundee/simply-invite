@@ -65,7 +65,7 @@ export default function Page() {
     });
 
     return (
-        <div className="min-h-full md:grid md:grid-cols-2 lg:grid-cols-3">
+        <div className="min-h-full gap-16 space-y-16 p-6 md:grid md:grid-cols-2 md:space-y-0 lg:grid-cols-3">
             <EInviteDisplay
                 event={{
                     date: values[1],
@@ -76,7 +76,7 @@ export default function Page() {
                     publicGuestList: values[5],
                 }}
             />
-            <section className="min-h-full space-y-9 p-6">
+            <section className="min-h-full space-y-9">
                 <h1 className="text-2xl">Let&apos;s create an event</h1>
                 <Form {...form}>
                     <form
@@ -92,7 +92,6 @@ export default function Page() {
                                 void router.push(
                                     `/dashboard/events/${id[0]?.id}`,
                                 );
-                                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                             } catch {
                                 toast.error(
                                     "Failed to create event! 😭 Please try again later.",

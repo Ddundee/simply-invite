@@ -60,40 +60,6 @@ function SortInput() {
     );
 }
 
-// function DisplayType() {
-
-//     const possibleListToggles = [
-//         {
-//             value: "card",
-//             label: <ViewGridIcon />,
-//         },
-//         {
-//             value: "list",
-//             label: <TextAlignJustifyIcon />,
-//         },
-//     ];
-//     const [listValue, setListValue] = useState<string>("card");
-
-//     return (
-//         <ToggleGroup
-//             type="single"
-//             className="gap-0 overflow-clip rounded-md border"
-//             value={listValue}
-//             onValueChange={(value) => setListValue(value)}
-//         >
-//             {possibleListToggles.map((item, index) => (
-//                 <ToggleGroupItem
-//                     className="h-full"
-//                     key={index}
-//                     value={item.value}
-//                 >
-//                     {item.label}
-//                 </ToggleGroupItem>
-//             ))}
-//         </ToggleGroup>
-//     )
-// }
-
 function Data({
     data,
 }: {

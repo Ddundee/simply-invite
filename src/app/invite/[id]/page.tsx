@@ -1,9 +1,8 @@
-import Link from "next/link";
 import React, { Suspense, use } from "react";
-import { getEventById } from "~/server/db/queries";
-import { Button } from "~/components/ui/button";
+import { getEventByIdForGuest } from "~/server/db/queries";
 import EInviteDisplay, {
     EInviteDisplayFallback,
+    EInviteNotFound,
 } from "~/app/_components/einvite-display";
 import InvitationResponse from "~/app/_components/invitation-response";
 type Props = {
@@ -20,8 +19,12 @@ export default async function Page({ params }: Props) {
             <Suspense>
                 <InvitationResponseData params={params} />
             </Suspense>
-            <div className="min-h-screen">
-                <Suspense fallback={<EInviteDisplayFallback />}>
+            <div className="flex min-h-screen justify-center p-6">
+                <Suspense
+                    fallback={
+                        <EInviteDisplayFallback className="w-full max-w-screen-md" />
+                    }
+                >
                     <EInviteDisplayData params={params} />
                 </Suspense>
             </div>
@@ -29,32 +32,27 @@ export default async function Page({ params }: Props) {
     );
 }
 
-function NotFound() {
-    return (
-        <div className="my-9 flex w-full flex-col items-center justify-center space-y-3">
-            <h1>How&apos;d you get here?</h1>
-            <Link href={"/"}>
-                <Button>Go Home</Button>
-            </Link>
-        </div>
-    );
-}
-
 function EInviteDisplayData({ params }: Props) {
     const { id } = use(params);
-    if (!isNumeric(id)) return <NotFound />;
+    if (!isNumeric(id)) return <EInviteNotFound />;
 
-    const { event, guests } = use(getEventById(+id));
+    const { event, guests } = use(getEventByIdForGuest(+id));
 
-    if (!event) return <NotFound />;
-    if (!guests) return <NotFound />;
+    if (!event) return <EInviteNotFound />;
+    if (!guests) return <EInviteNotFound />;
 
-    return <EInviteDisplay event={event} guests={guests} />;
+    return (
+        <EInviteDisplay
+            className="w-full max-w-screen-md"
+            event={event}
+            guests={guests}
+        />
+    );
 }
 
 function InvitationResponseData({ params }: Props) {
     const { id } = use(params);
-    if (!isNumeric(id)) return <NotFound />;
+    if (!isNumeric(id)) return <EInviteNotFound />;
 
     return <InvitationResponse id={+id} />;
 }

@@ -10,8 +10,6 @@ import {
     AccordionTrigger,
     AccordionContent,
 } from "~/components/ui/accordion";
-// import PrefetchDashboard from "../_components/prefetch-dashboard";
-
 export default function Page() {
     const faqs = [
         {
@@ -38,7 +36,6 @@ export default function Page() {
 
     return (
         <>
-            {/* <PrefetchDashboard /> */}
             <div
                 className="flex flex-col items-center justify-center space-y-9"
                 id="hero"
@@ -124,7 +121,7 @@ export default function Page() {
             </div>
             <div className="space-y-9" id="faqs">
                 <h2 className="text-2xl font-medium">FAQs</h2>
-                <div className="">
+                <div>
                     <Accordion type="single" collapsible>
                         {faqs.map(({ question, answer }, index) => (
                             <AccordionItem key={index} value={`${index}`}>

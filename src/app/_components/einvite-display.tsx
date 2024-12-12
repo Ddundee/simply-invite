@@ -18,6 +18,7 @@ import {
 import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 import { Skeleton } from "~/components/ui/skeleton";
+import Link from "next/link";
 
 type Props = {
     event: {
@@ -48,7 +49,7 @@ export default function EInviteDisplay({
     return (
         <div
             className={cn(
-                "flex-col gap-9 p-4 sm:flex md:grid-cols-2 md:p-16 lg:col-span-2",
+                "flex-col gap-9 sm:flex md:grid-cols-2 lg:col-span-2",
                 className,
             )}
         >
@@ -175,14 +176,19 @@ export default function EInviteDisplay({
     );
 }
 
-export function EInviteDisplayFallback() {
+export function EInviteDisplayFallback({ className }: { className?: string }) {
     return (
-        <div className="flex-col gap-9 p-4 sm:flex md:grid-cols-2 md:p-16 lg:col-span-2">
-            <Skeleton className="bg-muted/55">
-                <div className="w-full p-6">
+        <div
+            className={cn(
+                "flex-col gap-9 sm:flex md:grid-cols-2 lg:col-span-2",
+                className,
+            )}
+        >
+            <Card>
+                <CardHeader className="w-full p-6">
                     <Skeleton className="h-4 w-72" />
                     <Skeleton className="mt-2 h-5 w-24" />
-                </div>
+                </CardHeader>
                 <div className="mt-4 px-6 pb-6">
                     <Skeleton className="h-24 w-48" />
                 </div>
@@ -192,7 +198,18 @@ export function EInviteDisplayFallback() {
                         <Skeleton className="h-8 space-y-2 rounded-lg" />
                     </div>
                 </div>
-            </Skeleton>
+            </Card>
+        </div>
+    );
+}
+
+export function EInviteNotFound() {
+    return (
+        <div className="my-9 flex w-full flex-col items-center justify-center space-y-3">
+            <h1>How&apos;d you get here?</h1>
+            <Link href={"/"}>
+                <Button>Go Home</Button>
+            </Link>
         </div>
     );
 }

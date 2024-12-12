@@ -96,6 +96,7 @@ export default function Layout({ children }: LayoutProps) {
                     </SignedOut>
                     <SignedIn>
                         <Link
+                            prefetch
                             href="/dashboard"
                             className={buttonVariants({
                                 className: "rounded-md",

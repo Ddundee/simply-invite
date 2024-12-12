@@ -8,6 +8,7 @@ import {
 } from "@radix-ui/react-navigation-menu";
 import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
+import { EInviteNotFound } from "../_components/einvite-display";
 
 export default function Layout({
     children,
@@ -18,7 +19,6 @@ export default function Layout({
                 className="border-outline sticky top-0 flex items-center justify-between border-b bg-background/30 py-2 backdrop-blur-md [&>*]:mx-6"
                 id="nav"
             >
-                {/* <div className="flex items-center justify-between gap-12"> */}
                 <Link
                     href={"/dashboard"}
                     className="text-blue text-lg font-semibold"
@@ -27,7 +27,7 @@ export default function Layout({
                 </Link>
                 {/* </div> */}
                 <div className="flex gap-3">
-                    <NavigationMenu className="">
+                    <NavigationMenu>
                         <NavigationMenuList className="flex items-center gap-1">
                             <NavigationMenuItem>
                                 <Link href="/contact" legacyBehavior passHref>
@@ -57,40 +57,17 @@ export default function Layout({
                         </NavigationMenuList>
                     </NavigationMenu>
                     <SignedOut>
-                        {/* <ButtonGroup>
-                            <SignInButton
-                                signUpForceRedirectUrl={"/dashboard"}
-                                forceRedirectUrl={"/dashboard"}
-                            >
-                                Sign in
-                            </SignInButton>
-                            <SignUpButton
-                                signInFallbackRedirectUrl={"/dashboard"}
-                                fallbackRedirectUrl={"/dashboard"}
-                            >
-                                Sign up
-                            </SignUpButton>
-                        </ButtonGroup> */}
                         <Link href={"/"}>
                             <Button>Go Home</Button>
                         </Link>
                     </SignedOut>
-                    <SignedIn>
-                        {/* <h2>
-                            TODO: insert notif button  Insert TODO Button
-                        </h2> */}
-                    </SignedIn>
+                    <SignedIn></SignedIn>
                 </div>
             </nav>
 
             <SignedIn>{children}</SignedIn>
             <SignedOut>
-                <main className="mt-32 flex h-full w-full flex-col items-center justify-center gap-3">
-                    <h1>How did you get here? 💀</h1>
-                    <Link href="/">
-                        <Button>Go Home</Button>
-                    </Link>
-                </main>
+                <EInviteNotFound />
             </SignedOut>
         </div>
     );
