@@ -8,6 +8,17 @@ export const metadata: Metadata = {
     title: "Simply Invite",
     description: "A invitation generation service.",
     icons: [{ rel: "icon", url: "/favicon.ico" }],
+    openGraph: {
+        images: [
+            {
+                url: "https://utfs.io/f/iy8VhIdg9H3XNV9Yuai5nxOaYBwhe4KSsRPc09UCHgDQ1rmM",
+            },
+        ],
+        siteName: "Simply Invite",
+        title: "Simply Invite",
+        description: "A invitation generation service.",
+        url: "https://simply-invite.vercel.app",
+    },
 };
 
 const swizter = localFont({ src: "./_fonts/Switzer-Variable.ttf" });
