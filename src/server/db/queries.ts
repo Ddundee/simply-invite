@@ -2,6 +2,16 @@ import "server-only";
 import { auth } from "@clerk/nextjs/server";
 import { db } from ".";
 import { event, guest } from "./schema";
+import ratelimit from "~/util/rate-limit";
+
+export type createEventParamType = {
+    name: string;
+    date: Date;
+    hostName: string;
+    location: string;
+    note?: string;
+    publicGuestList: boolean;
+};
 
 export async function getAllEvents() {
     const user = await auth();
@@ -29,15 +39,6 @@ export async function getAllEvents() {
     return eventsWithGuests;
 }
 
-export type createEventParamType = {
-    name: string;
-    date: Date;
-    hostName: string;
-    location: string;
-    note?: string;
-    publicGuestList: boolean;
-};
-
 export async function createEvent({
     name,
     date,
@@ -48,6 +49,9 @@ export async function createEvent({
 }: createEventParamType) {
     const user = await auth();
     if (!user.userId) throw new Error("Unauthorized: Not logged in");
+    const { success } = await ratelimit.limit(user.userId);
+    console.log(success);
+    if (!success) throw new Error("Rate limit exceeded");
 
     const id = await db
         .insert(event)
@@ -66,7 +70,6 @@ export async function createEvent({
 }
 
 export async function getEventByIdForHost(id: number) {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
     const user = await auth();
     if (!user.userId) throw new Error("Unauthorized: Not logged in");
 
