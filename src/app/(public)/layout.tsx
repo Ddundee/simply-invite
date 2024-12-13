@@ -81,7 +81,7 @@ export default function Layout({ children }: LayoutProps) {
                                 forceRedirectUrl={"/dashboard"}
                             >
                                 <Button className="rounded-r-none focus:z-10">
-                                    Sign In
+                                    Login
                                 </Button>
                             </SignInButton>
                             <SignUpButton
@@ -139,7 +139,7 @@ export default function Layout({ children }: LayoutProps) {
                                                 forceRedirectUrl={"/dashboard"}
                                             >
                                                 <Button className="w-full">
-                                                    Sign In
+                                                    Login
                                                 </Button>
                                             </SignInButton>
                                         </li>
