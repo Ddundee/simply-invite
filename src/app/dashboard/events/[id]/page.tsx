@@ -41,7 +41,12 @@ function Data({ param }: { param: Promise<{ id: string }> }) {
     if (!guests) return <EInviteNotFound />;
     return (
         <div className="min-h-full gap-16 space-y-16 p-6 md:grid md:grid-cols-2 md:space-y-0 lg:grid-cols-3">
-            <EInviteDisplay event={event} guests={guests} className="fade-in" />
+            <EInviteDisplay
+                event={{ ...event }}
+                deletable
+                guests={guests}
+                className="fade-in"
+            />
             <section className="min-h-full space-y-9">
                 <h1 className="text-2xl">Copy the link and invite</h1>
                 <LinkToInvite />

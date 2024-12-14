@@ -3,6 +3,7 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from ".";
 import { event, guest } from "./schema";
 import ratelimit from "~/util/rate-limit";
+import { and, eq } from "drizzle-orm";
 
 export type createEventParamType = {
     name: string;
@@ -121,4 +122,13 @@ export async function addGuest({
             response,
         })
         .returning();
+}
+
+export async function deleteEvent(id: number) {
+    const user = await auth();
+    if (!user.userId) throw new Error("Unauthorized: Not logged in");
+
+    await db
+        .delete(event)
+        .where(and(eq(event.id, id), eq(event.userId, user.userId)));
 }

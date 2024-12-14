@@ -14,11 +14,10 @@ InviteLink is a event invitation app where users can upload their own invitation
 - [x] Sheet for "See More" on Einvite component
 - [x] Redesign the UI
 - [x] Make '/dashboard' suspenseful
-- [ ] Request feature thing
-- [ ] Add a contribution page
-- [ ] Add a hamburger menu for dashboard nav and landing page nav
-- [ ] Ability to delete invites
+- [x] Add a hamburger menu for dashboard nav and landing page nav
+- [x] Ability to delete invites
 - [ ] Add a way to upload images
+- [ ] Make feature request
 - [ ] Add a way to send invites via email
 - [ ] Figure out ~~the pricing or~~ how to make it free
 - [ ] Add a way to send invites via SMS

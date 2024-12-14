@@ -19,6 +19,7 @@ import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 import { Skeleton } from "~/components/ui/skeleton";
 import Link from "next/link";
+import OptionsButton from "./einvite-display-options-button";
 
 type Props = {
     event: {
@@ -39,12 +40,14 @@ type Props = {
         response: "accepted" | "declined" | "pending";
     }[];
     className?: string;
+    deletable?: boolean;
 };
-// name: ["name", "date", "location", "hostName", "note", "publicGuestList"]
+
 export default function EInviteDisplay({
-    event: { name, date, location, hostName, note, publicGuestList },
+    event: { name, id, date, location, hostName, note, publicGuestList },
     className,
     guests,
+    deletable,
 }: Props) {
     return (
         <div
@@ -57,9 +60,12 @@ export default function EInviteDisplay({
                 title={name ? name : ""}
                 className="space-y-4 [&>h4]:truncate [&>h4]:text-2xl"
             >
-                <CardHeader>
-                    <CardTitle>{name}</CardTitle>
-                    {note && <CardDescription>{note}</CardDescription>}
+                <CardHeader className="flex w-full flex-row justify-between">
+                    <div className="w-min">
+                        <CardTitle>{name}</CardTitle>
+                        {note && <CardDescription>{note}</CardDescription>}
+                    </div>
+                    {id && deletable && <OptionsButton id={id} />}
                 </CardHeader>
                 <CardContent>
                     {date && (
