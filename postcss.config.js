@@ -1,7 +1,5 @@
-let postcss = {
-    plugins: {
-        tailwindcss: {},
-    },
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
 };
-
-export default postcss;

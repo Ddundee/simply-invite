@@ -1,35 +1,29 @@
-# Simply Invite
-InviteLink is a event invitation app where users can upload their own invitation designs, generate a shareable link, and choose to send invitations via email or SMS (Email/SMS is still a work in progress 😭).
+# Create T3 App
 
-## TODO
-- [x] Design the basic layout in Figma
-- [x] Finish the code for home page
-- [x] Finish the code for contact page
-- [x] Add Clerk, and Drizzle integrations
-- [x] Make the schema for the database
-- [x] Finish the code for the create invite page
-- [x] Finish the code for the dashboard page
-- [x] Finish the code for the invitation page
-- [x] Add (public) layout.tsx
-- [x] Sheet for "See More" on Einvite component
-- [x] Redesign the UI
-- [x] Make '/dashboard' suspenseful
-- [x] Add a hamburger menu for dashboard nav and landing page nav
-- [x] Ability to delete invites
-- [ ] Add a way to upload images
-- [ ] Make feature request
-- [ ] Add a way to send invites via email
-- [ ] Figure out ~~the pricing or~~ how to make it free
-- [ ] Add a way to send invites via SMS
-- [ ] Make a dark mode
-- [ ] Add a way to edit invites
+This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
-## Tech Stack
-- Next.js (for frontend)
-- Clerk (for auth)
-- Drizzle (for orm)
-- Supabase (for db)
-- Vercel (for hosting)
+## What's next? How do I make an app with this?
 
-## Contribute
-We are a open-source project and would love to have you help contribute to our project. I'm still starting so I gotta figure out how this works... I guess you can just fork the project and make a pull request. I'll review it and merge it if it's good.
+We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+
+If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+
+- [Next.js](https://nextjs.org)
+- [NextAuth.js](https://next-auth.js.org)
+- [Prisma](https://prisma.io)
+- [Drizzle](https://orm.drizzle.team)
+- [Tailwind CSS](https://tailwindcss.com)
+- [tRPC](https://trpc.io)
+
+## Learn More
+
+To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+
+- [Documentation](https://create.t3.gg/)
+- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+
+You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+
+## How do I deploy this?
+
+Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
